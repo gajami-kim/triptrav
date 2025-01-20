@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.www.triptrav.repository.LikeMapper">
+    <insert id="addLike" >
+        insert into `like`(uno, like_code, like_name , type_id) values (#{uno}, #{likeCode}, #{likeName}, #{typeId})
+    </insert>
+    <select id="likeStatus" resultType="int">
+        select count(*) from `like` where uno = #{uno} and like_code = #{likeCode}
+    </select>
+    <delete id="deleteLike">
+        delete from `like` where uno = #{uno} and like_code = #{likeCode}
+    </delete>
+    <select id="getLikeList" resultType="com.www.triptrav.domain.LikeVO">
+        select * from `like` where uno=#{uno}
+    </select>
+</mapper>

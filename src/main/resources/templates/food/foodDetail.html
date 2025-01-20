@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>상세페이지</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <link rel="stylesheet" href="/dist/css/place/placeDetail.css">
+    <script src="/dist/js/key.js"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2405143deeab244b2402da9e3bd9a581&libraries=services,clusterer,drawing"></script>
+</head>
+<body>
+<th:block th:replace="~{header :: header}"></th:block>
+<main>
+    <section class="titleSection">
+        <div class="location">
+        </div>
+        <img src="/dist/image/heart.svg" alt="그림없음" class="placeHeart">
+        <img src="/dist/image/map.svg" alt="그림없음" class="placeMap" onclick="savePlace(event)">
+        <div class="savePlaceModal"></div>
+        <div class="imageUrls"></div>
+        <img src="/dist/image/chevron-left.svg" class="prev" alt="noPic">
+        <img src="/dist/image/chevron-right.svg" class="next" alt="noPic">
+    </section>
+    <section class="infoSection">
+        <div class="firstLine">
+            <span class="locationTitle"></span>
+            <span class="rating"></span>
+            <span class="score"></span>
+        </div>
+        <span class="locationInfo"></span><br>
+        <span class="telInfo"></span><br>
+        <span class="restInfo"></span><br>
+        <span class="timeInfo"></span><br>
+        <span class="priceInfo"></span><br>
+        <a class="homepageInfo"></a>
+    </section>
+    <section class="buttonSection">
+        <button class="outlineMove">개요</button>
+        <button class="reviewMove">리뷰</button>
+        <button class="findRouteMove">찾아가는 길</button>
+        <button class="nearbyMove">주변정보</button>
+    </section>
+    <section class="details"></section>
+    <section class="reviews">
+        <span class="sectionTitle">리뷰</span><span class="reviewCount">개</span>
+        <div class="inputDiv">
+            <form action="/review/POST" method="post" enctype="multipart/form-data" class="reviewForm">
+                <textarea class="reviewArea" name="reContent" cols="30" rows="5" placeholder="로그인 후 리뷰를 남겨보세요."></textarea><br>
+                <div class="star-rating">
+                    <div class="stars" id="stars">
+                        <span class="star" data-value="1"></span>
+                        <span class="star" data-value="2"></span>
+                        <span class="star" data-value="3"></span>
+                        <span class="star" data-value="4"></span>
+                        <span class="star" data-value="5"></span>
+                    </div>
+                    <p>별점: <span id="rating-value">0</span></p>
+                </div>
+                <input type="file" id="imageInput" name="images" accept="image/jpeg, image/png" multiple style="display: none;" onchange="handleFileUpload(event)">
+                <button type="button" class="cameraInput" onclick="document.getElementById('imageInput').click();">
+                    카메라
+                </button>
+                <div id="previewContainer"></div>
+                <div id="fileCount"></div>
+                <button class="addButton" type="button">등록</button>
+            </form>
+        </div>
+        <div class="buttons">
+            <button>좋아요순</button>
+            <button>평점 높은순</button>
+            <button>최신순</button>
+        </div>
+        <div class="review">
+        </div>
+    </section>
+    <section class="transportation">
+        <p class="sectionTitle">찾아가는 길</p>
+        <div id="staticMap" style="width:1000px;height:500px; margin: 0 auto"></div>
+    </section>
+    <section class="nearby">
+        <p class="sectionTitle">근처 관광지</p>
+        <div class="attractions">
+            <div class="locations">
+                <img src="" alt="">
+                <div class="info">
+                    <p class="title"></p>
+                    <p class="distance"></p>
+                </div>
+            </div>
+        </div>
+        <p class="sectionTitle">근처 맛집</p>
+        <div class="food">
+            <div class="locations">
+                <img src="" alt="">
+                <div class="info">
+                    <p class="title"></p>
+                    <p class="distance"></p>
+                </div>
+            </div>
+        </div>
+        <div class="blank"></div>
+    </section>
+    <div class="overlay" id="overlay">
+        <div class="spinner" id="spinner">
+            <div class="loading-spinner"></div>
+        </div>
+    </div>
+</main>
+<script src="/dist/js/food/foodDetail.js"></script>
+<script src="/dist/js/place/savePlace.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ko.js"></script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.www.triptrav.repository.ScheduleRoleMapper">
+    <insert id="insertPlanRole">
+        insert into schedule_role (sco, sche_role, uno)
+        values (#{sco}, #{i}, #{uno})
+    </insert>
+
+    <select id="checkScheduleRole" resultType="com.www.triptrav.domain.ScheduleRoleVO">
+        select * from schedule_role where uno=#{uno} and sco=#{sco}
+    </select>
+
+    <insert id="addScheduleRole">
+        insert into schedule_role (sco, uno)
+        value (#{sco}, #{uno})
+    </insert>
+
+    <update id="updateRole">
+        update schedule_role set sche_role=#{roleValue}
+        where sco=#{sco} and uno=#{uno}
+    </update>
+
+    <delete id="deleteRole">
+        delete from schedule_role where sco=#{sco} and uno=#{uno}
+    </delete>
+</mapper>

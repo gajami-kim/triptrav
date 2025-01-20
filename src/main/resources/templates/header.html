@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<th:block th:fragment="header">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>title</title>
+        <link rel="stylesheet" th:href="@{/dist/css/reset.css}">
+        <link rel="stylesheet" th:href="@{/dist/css/user/loginJoin.css}">
+        <style>
+            .header-nav {
+                background: #ffffff00;
+                position: absolute;
+                z-index: 100;
+                width: 1440px;
+                top: 30px;
+                left: 50%;
+                transform: translateX(-50%);
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .middleUl {
+                font-family: LINESeedKR-Bd;
+                width: 500px;
+                display: flex;
+                justify-content: space-around;
+                font-size: 19px;
+                line-height: 83px;
+                position: absolute;
+                left: 34%;
+            }
+
+            .rightUl {
+                font-family: LINESeedKR-Rg;
+                display: flex;
+                line-height: 83px;
+            }
+
+            a {
+                color: white;
+                cursor: pointer;
+            }
+            button:focus {
+                outline: none;
+            }
+            input:focus{
+                outline: none;
+            }
+            textarea:focus{
+                outline: none;
+            }
+            .leftBox{
+                line-height: 83px;
+                position: relative;
+            }
+            .leftBox img{
+                width: 180px;
+                height: 66px;
+                position: absolute;
+                top: 9px;
+                filter: invert();
+            }
+        </style>
+    </head>
+    <body>
+    <nav class="header-nav" id="header">
+        <div class="leftBox">
+            <a th:href="@{/}">
+                <img src="/dist/image/TripTravLogo.png" class="logoImg" id="logo">
+            </a>
+        </div>
+        <div class="middleBox">
+            <ul class="middleUl">
+                <li><a id="goToMaps" th:href="@{/maps/mapsMain}">Maps</a></li>
+                <li><a th:href="@{/trip/}">Trips</a></li>
+                <li><a id="searchA">Search</a></li>
+            </ul>
+        </div>
+        <div class="rightBox">
+            <th:block sec:authorize="isAnonymous()">
+                <ul class="rightUl">
+                    <li><a id="openModal"> 로그인ㅤ|ㅤ회원가입 </a></li>
+                </ul>
+            </th:block>
+            <th:block sec:authorize="isAuthenticated()">
+                <ul class="rightUl">
+                    <li><a th:href="@{/user/logout}" id="logout"> 로그아웃</a></li>
+                    <li><a>ㅤ|ㅤ</a></li>
+                    <li>
+                        <a th:href="@{/mypage(uno=${#authentication.getPrincipal().getUser().getUno()})}"
+                           id="mypage">마이페이지</a></li>
+                </ul>
+            </th:block>
+        </div>
+    </nav>
+    <div id="myModal" class="modal">
+        <div class="modal-content" id="modalContent">
+            <section class="mainBox loginBox">
+                <button class="close-button" id="closeModal">&times;</button>
+                <form id="loginForm" action="/login" method="post" class="LoginArea">
+                    <p class="pClass"><img class="logoImg"></p>
+                    <h2>로그인</h2>
+                    <p class="pClass"><input type="text" id="username" name="email" placeholder="이메일을 입력하세요."></p>
+                    <p class="pClass"><input type="password" id="password" name="pw" placeholder="비밀번호를 입력하세요."></p>
+                    <p class="pClass"><button type="submit" id="loginBtn">로그인</button></p>
+                </form>
+            </section>
+            <section class="mainBox joinBox">
+                <p class="pClass">회원이 아니신가요? <a id="joinBtn">회원가입</a> </p>
+                <p class="pClass">계정을 잊으셨나요? <a id="findBtn">아이디/비밀번호 찾기</a> </p>
+            </section>
+            <hr style="border: solid 0.5px lightgrey">
+            <section class="mainBox snsJoinBox">
+                <a href="/oauth2/authorization/kakao"><img src="/dist/image/kakaoLogin.png"></a>
+                <a href="/oauth2/authorization/google"><img src="/dist/image/googleLogin.png"></a>
+                <a href="/oauth2/authorization/naver"><img src="/dist/image/naverLogin.png"></a>
+            </section>
+        </div>
+    </div>
+    <script src="/dist/js/loginJoin.js"></script>
+    <script src="/dist/js/header.js"></script>
+    <script>
+        let url = window.location.href;
+
+        document.getElementById('searchA').addEventListener('click', () => {
+            if (url === "http://localhost:8099/") {
+                changeSearch();
+            } else {
+                window.location.href = "http://localhost:8099/?search=true";
+            }
+        });
+
+        function changeSearch() {
+            document.querySelector('.mainText').style.display = 'none';
+            document.querySelector('.mainBtnDiv').style.display = 'none';
+            document.querySelector('.tasteDiv').style.display = 'none';
+            document.querySelector('.inputWrap').style.display = '';
+        }
+    </script>
+    <script sec:authorize="isAuthenticated()">
+        let unoNum = `[[${#authentication.getPrincipal().getUser().getUno()}]]`;
+        let userNickname = `[[${#authentication.getPrincipal().getUser().getNickname()}]]`;
+        var urlParams = new URLSearchParams(window.location.search);
+        const message = urlParams.get('message');
+        console.log(message);
+        if (message) {
+            alert("허용되지 않은 닉네임입니다.\n닉네임을 변경해주세요. ");
+            goToMyPage(unoNum);
+        } else if (userNickname.includes("_user") && message != null) {
+            alert("허용되지 않은 닉네임입니다.\n닉네임을 변경해주세요. ");
+            goToMyPage(unoNum);
+        }
+
+        function goToMyPage(unoNum) {
+            window.location.href = `/mypage?uno=${unoNum}&modal=modifyNick`;
+        }
+    </script>
+    <script>
+        function changeHeaderColor() {
+            const header = document.getElementById('header');
+            const logo = document.getElementById('logo');
+            const currentURL = window.location.href;
+            const headerText = document.querySelectorAll('#header a');
+
+            if (currentURL.includes('/maps') || currentURL.includes('/mypage') || currentURL.includes('/taste') || currentURL.includes('/place')||currentURL.includes('/food') || currentURL.includes('/trip')) {
+                headerText.forEach(link => {
+                    link.style.color = 'black';
+                    link.style.setProperty('color', 'black', 'important');
+                    logo.style.filter = 'unset';
+                });
+                header.style.position = 'absolute';
+                header.style.width = '1440px';
+                header.style.margin = '0 auto';
+            }else {
+                headerText.forEach(link => {
+                    link.style.color = 'white';
+                    link.style.setProperty('color', 'white', 'important');
+                });
+            }
+        }
+
+        // 페이지 로드 시 실행
+        window.addEventListener('load', changeHeaderColor)
+        // window.onload = changeHeaderColor;
+
+
+
+        function openLoginModal() {
+            // 모달 창을 다시 보여주는 로직 추가
+            const loginModal = document.querySelector('#myModal');
+            loginModal.style.display = 'block';
+        }
+
+        document.getElementById('loginBtn').addEventListener('click', function (e) {
+            e.preventDefault();
+
+            const userId = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (!userId && !password) {
+                alert('아이디와 비밀번호를 입력해주세요.');
+            } else if (!userId) {
+                alert('아이디를 입력해주세요.');
+            } else if (!password) {
+                alert('비밀번호를 입력해주세요.');
+            } else {
+                // 아이디와 비밀번호가 모두 입력된 경우, 로그인 요청을 보냄
+                document.getElementById('loginForm').submit();
+            }
+        });
+
+    </script>
+    </body>
+</th:block>
+</html>

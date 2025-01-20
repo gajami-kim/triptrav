@@ -1,0 +1,82 @@
+.tripCard:is(.tripReviewImgDiv){
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    padding: 15px;
+    border-bottom: 1px solid #B3B3B3;
+}
+
+.tripReviewImgDiv{
+    position: absolute;
+    display: flex;
+    width: 250px;
+    height: 80px;
+    top: 15px;
+    left: 350px;
+}
+
+.tripReviewImg{
+    width: 80px;
+    height: 80px;
+    border: 1px solid #B3B3B3;
+    object-fit: cover;
+    margin-right: 5px;
+}
+
+.tripReviewInfo{
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    padding-left: 20px;
+    width: 1300px;
+}
+
+.tripReviewInfo > ul > li > p:is(.reviewContent){
+    position: absolute;
+    font-size: 20px;
+    left: 20px;
+    top:80px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    line-height: unset;
+}
+
+.reviewPlaceName{
+    margin-bottom: 8px;
+    font-size: 26px;
+}
+
+.reviewRegDate{
+    margin-top: 8px;
+}
+
+.reviewRating > img{
+    width: 20px;
+    height: 20px;
+}
+
+.reviewMain {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+}
+
+.reviewPlaceMain{
+    width: 120px;
+    height: 160px;
+}
+
+.tripReviewUl>li>a{
+    color: black;
+}
+
+
+
+
+
+
+
+
+
+

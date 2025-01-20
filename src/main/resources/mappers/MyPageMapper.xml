@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.www.triptrav.repository.MyPageMapper">
+
+    <select id="isSocial" resultType="com.www.triptrav.domain.UserVO">
+        select * from user where uno = #{uno}
+    </select>
+
+    <select id="scheduleCall" resultType="com.www.triptrav.domain.ScheduleVO">
+        select * from schedule where uno = #{uno} order by sche_start asc, sche_end asc
+    </select>
+    <!--내가 쓴 리뷰 -->
+    <select id="getReviewList" resultType="com.www.triptrav.domain.ReviewVO">
+       select * from review where uno =#{uno} order by re_date desc
+    </select>
+    <!--수정 리뷰   -->
+    <select id="getPopReview" resultType="com.www.triptrav.domain.ReviewVO">
+        select * from review where rno=#{rno}
+    </select>
+    <!--리뷰쓴 이미지 가져오기  -->
+    <select id="getReviewDTOList" resultType="com.www.triptrav.domain.ReviewImageVO">
+        select * from review_image where rno=#{rno}
+    </select>
+
+    <select id="getScheduleDetail" resultType="com.www.triptrav.domain.ScheduleDetailVO">
+        select * from schedule_detail where sco=#{sco} and sche_index = 1 and sche_date = 1
+    </select>
+
+    <select id="getComList" resultType="String">
+        select sco from schedule_companion where uno=#{uno}
+    </select>
+
+    <select id="scheduleComCall" resultType="com.www.triptrav.domain.ScheduleVO">
+        select * from schedule where sco=#{sco} order by sche_start asc, sche_end asc
+    </select>
+
+    <update id="userComNPw">
+        update user set nickname=#{nickname}, profile=#{profile} where uno=#{uno}
+    </update>
+
+    <update id="userComYPw">
+        update user set nickname=#{nickname}, pw=#{pw},profile=#{profile} where uno=#{uno}
+    </update>
+
+    <update id="userSocialUpdate">
+        update user set nickname=#{nickname} where uno = #{uno}
+    </update>
+
+    <delete id="scheduleDelete">
+        delete from schedule
+        where schedule.sco = #{sco};
+    </delete>
+
+    <select id="getLikePlace" resultType="com.www.triptrav.domain.LikeVO">
+        select * from `like` where uno=#{uno} and type_id = #{typeId};
+    </select>
+
+    <select id="getRole">
+        select sche_role from schedule_role where uno=#{uno} and sco=#{sco}
+    </select>
+
+    <delete id="delLike">
+        delete from `like` where uno =#{uno} and like_code=#{likeCode}
+    </delete>
+
+</mapper>

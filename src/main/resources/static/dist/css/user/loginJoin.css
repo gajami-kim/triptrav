@@ -1,0 +1,159 @@
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    background-color: rgba(0, 0, 0, 0.34);
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    /* transform 제거 */
+}
+
+.modal-content {
+    font-family: LINESeedKR-Rg;
+    position: fixed;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 375px;
+    text-align: center;
+    height: 530px;
+    z-index: 1001;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.close-button {
+    color: orange;
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    position: absolute; /* relative를 absolute로 수정 */
+    top: 10px; /* 모달 내부 상단에 고정 */
+    right: 10px; /* 우측에 고정 */
+}
+
+.mainBox p{
+    width: 90%;
+    justify-content: center;
+    margin: 0 auto;
+    height: 46px;
+    line-height: 46px;
+}
+
+.pClass input {
+    font-family: 'LINESeedKR-Rg';
+    padding: 10px;
+    width: 90%;
+    margin: 11px 0;
+    border: none;
+    background-color: #d3d3d361;
+    border-radius: 5px;
+    outline: none;
+}
+
+.pClass {
+    width: 90%;
+    justify-content: center;
+    margin: 0 auto;
+    height: auto;
+    line-height: normal;
+}
+
+.pClass button {
+    width: 98%;
+    margin: 24px 0;
+    height: 35px;
+    border: none;
+    font-family: 'LINESeedKR-Rg';
+    background-color: orange;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.pClass a {
+    font-family: 'LINESeedKR-Bd';
+    font-size: 15px;
+    color: orange;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.joinBox {
+    margin-top: 35px;
+}
+
+.joinBox p {
+    font-size: 14px;
+    color: #000000b8;
+}
+
+.snsJoinBox a img {
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    margin: 10px 12px;
+}
+
+.joinLine {
+    margin-top: 30px;
+}
+
+#backBtn {
+    z-index: 10;
+    pointer-events: auto;
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    position: absolute; /* relative를 absolute로 수정 */
+    top: 10px; /* 상단 고정 */
+    left: 10px; /* 좌측 고정 */
+}
+
+.JoinSpan {
+    display: block;
+    font-size: 13px;
+    color: grey;
+    text-align: center;
+    position: relative;
+    top: 8px;
+}
+
+.findPwBox {
+    position: relative;
+    top: 65px;
+}
+
+.findPwTitle {
+    font-size: 20px;
+}
+
+.findPwMsg {
+    font-size: 14px;
+    line-height: 19px;
+    color: #666666;
+}
+
+.findPwEmailBtn {
+    background-color: orange;
+    width: 325px;
+    height: 50px;
+    border-radius: 5px;
+    margin: 30px auto;
+    font-size: 15px;
+    font-family: 'LINESeedKR-Rg';
+    color: white;
+}
+
+.findNoPw {
+    background-color: red;
+}

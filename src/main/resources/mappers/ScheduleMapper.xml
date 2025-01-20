@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.www.triptrav.repository.ScheduleMapper">
+    <insert id="insertPlan" useGeneratedKeys="true" keyProperty="sco">
+        insert into schedule (sche_name, uno, sche_start, sche_end, sche_count, sche_img)
+        values (#{scheName}, #{uno}, #{scheStart}, #{scheEnd}, #{scheCount}, #{scheImg})
+    </insert>
+
+    <select id="getSchedule" resultType="com.www.triptrav.domain.ScheduleDTO">
+        select
+        s.sche_name, s.sche_start, s.sche_end, s.sche_count,
+        sd.sche_content_id, sd.sche_index, sd.sche_date
+        from schedule s
+        join schedule_detail sd
+        on s.sco = sd.sco
+        Where s.sco=${sco}
+        and sd.sche_date = ${date}
+    </select>
+
+    <update id="updatePlanName">
+        update schedule set sche_name=#{scheName} where sco=#{sco}
+    </update>
+
+    <update id="insertMemo">
+        update schedule set sche_memo = #{i}
+        where sco = #{sco}
+    </update>
+
+    <select id="getMemoYN" resultType="int">
+        select sche_memo from schedule where sco=#{sco}
+    </select>
+
+    <update id="updateMemoYN">
+        update schedule set sche_memo=0
+        where sco=#{sco}
+    </update>
+
+    <select id="getScheduleMaker" resultType="long">
+        select uno from schedule where sco = #{sco}
+    </select>
+
+    <select id="getScheduleVO" resultType="com.www.triptrav.domain.ScheduleVO">
+        select * from schedule where sco=#{sco}
+    </select>
+
+    <select id="getUserSchedule" resultType="com.www.triptrav.domain.ScheduleVO">
+        select * from schedule where uno=${uno}
+    </select>
+</mapper>

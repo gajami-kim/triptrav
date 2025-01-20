@@ -1,0 +1,71 @@
+.tripWrap {
+    width: 90%;
+    max-width: 1900px;
+    margin: 140px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: LINESeedKR-Rg;
+}
+
+.list-container{
+    width: 1440px;
+    height: 700px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.list-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    padding: 25px;
+    border: 2px solid #ccc;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    background-color: #ffffff;
+    transition: transform 0.3s, box-shadow 0.3s;
+    width: 100%;
+    max-width: 1000px;
+    position: relative;
+}
+
+
+.list-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+}
+
+.list-item > .courseImg {
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+    margin-right: 20px;
+    border-radius: 8px;
+    border: 2px solid #ddd;
+}
+
+.list-item h3 {
+    margin: 0 0 10px;
+    font-size: 26px;
+    color: #2c3e50;
+}
+
+.list-item p {
+    margin: 5px 0;
+    color: #34495e;
+    font-size: 16px;
+}
+
+.heartImg{
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
+
+.btnDiv{
+    position: absolute;
+    bottom: 20px;
+    right: 15px;
+}

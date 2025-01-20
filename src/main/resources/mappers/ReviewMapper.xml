@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.www.triptrav.repository.ReviewMapper">
+    <insert id="post" useGeneratedKeys="true" keyProperty="rno">
+        INSERT INTO review (uno, nickname, re_rate, re_content,re_content_id, re_content_type, re_content_name, re_image_count)
+        VALUES (#{uno}, #{nickname}, #{reRate}, #{reContent}, #{reContentId}, #{reContentType}, #{reContentName}, #{reImageCount})
+    </insert>
+    <update id="put">
+        UPDATE review
+        SET
+        nickname = #{nickname},
+        re_rate = #{reRate},
+        re_content = #{reContent},
+        re_content_id = #{reContentId},
+        re_content_type = #{reContentType},
+        re_content_name = #{reContentName},
+        re_image_count = #{reImageCount}
+        WHERE rno = #{rno}
+    </update>
+    <delete id="delete">
+        delete from review where rno = #{rno}
+    </delete>
+    <insert id="insertReviewImage">
+        INSERT INTO review_image (rno, image_path, upload_date)
+        VALUES (#{rno}, #{imagePath}, NOW())
+    </insert>
+    <select id="getList" resultType="com.www.triptrav.domain.ReviewVO">
+        select * from review where re_content_id = #{contentId}
+    </select>
+    <select id="getImagePathsByReviewId" resultType="String">
+        select image_path from review_image where rno = #{rno}
+    </select>
+    <select id="getCount" resultType="int">
+        select count(*) from review where re_content_id = #{contentId}
+    </select>
+    <select id="checkReviewLike" resultType="int">
+        select count(*) from review_like where rno = #{rno} and uno = #{uno}
+    </select>
+    <insert id="clickLike">
+        insert into review_like (rno, uno) values (#{rno}, #{uno})
+    </insert>
+    <delete id="unClickLike">
+        delete from review_like where rno = #{rno} and uno = #{uno}
+    </delete>
+    <select id="getLikeCount" resultType="int">
+        select count(*) from review_like where rno = #{rno}
+    </select>
+    <select id="getPlaceScore" resultType="int">
+        SELECT IFNULL(SUM(re_rate), 0) FROM review WHERE re_content_id = #{contentId}
+    </select>
+    <update id="plusCount">
+        update review set re_useful = re_useful + 1 where rno = #{rno}
+    </update>
+    <update id="minusCount">
+        update review set re_useful = re_useful - 1 where rno = #{rno}
+    </update>
+    <delete id="removeAllImagePath">
+        delete from review_image where rno = #{rno}
+    </delete>
+    <insert id="saveReport">
+        insert into review_report(rno, uno, report_reason) values (#{rno}, #{uno}, #{reportReason})
+    </insert>
+    <select id="checkReport" resultType="int">
+        select count(*) from review_report where rno = #{rno} and uno = #{uno}
+    </select>
+    <update id="updateReportCount">
+        update review set re_report = re_report+1 where rno = #{rno}
+    </update>
+    <select id="getReportCount" resultType="int">
+        select re_report from review where rno = #{rno}
+    </select>
+</mapper>

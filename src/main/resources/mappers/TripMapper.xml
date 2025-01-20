@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.www.triptrav.repository.TripMapper">
+
+    <select id="getLikeList" resultType="String">
+        Select like_code from `like` where uno=#{uno} and type_id = 1;
+    </select>
+
+    <insert id="addLike">
+        insert into `like`(uno,like_name,like_code,type_id) values(#{uno},#{likeName},#{likeCode},1);
+    </insert>
+
+    <delete id="deleteLike">
+        delete from `like` where uno = #{uno} and like_code = #{likeCode} and type_id = 1;
+    </delete>
+</mapper>

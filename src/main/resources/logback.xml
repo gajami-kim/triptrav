@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="true">
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d %5p - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <logger name="com.project.www" level="info" appender-ref="STDOUT"></logger>
+    <logger name="org.springframework" level="info" appender-ref="STDOUT"></logger>
+    <logger name="org.springframework.jdbc" level="info" appender-ref="STDOUT"></logger>
+    <logger name="jdbc.sqlonly" level="info" appender-ref="STDOUT"></logger>
+    <logger name="jdbc.resultsettable" level="info" appender-ref="STDOUT"></logger>
+    <logger name="org.springframework.security" level="DEBUG" />
+    <root level="info">
+        <appender-ref ref="STDOUT" />
+    </root>
+</configuration>

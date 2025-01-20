@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<title>main</title>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>triptrav index</title>
+    <link rel="stylesheet" th:href="@{/dist/css/indexPage.css}">
+</head>
+    <body>
+        <th:block th:replace="~{header :: header}"></th:block>
+        <div class="mainWrap">
+            <div class="mainBackImg">
+                <img src="/dist/image/main1.jpg" class="active">
+                <img src="/dist/image/main3.jpg">
+                <img src="/dist/image/main4.jpg">
+                <img src="/dist/image/main5.jpg">
+            </div>
+            <div class="mainText">
+                <span class="bold">한번</span>에 끝나는 여행계획, 트립트랩이 도와드릴게요.
+            </div>
+            <div class="mainBtnDiv">
+                <button class="mainBtn">
+                    <a onclick="loadTaste()">취향 분석하기<img src="/dist/image/send.svg"></a>
+                </button>
+            </div>
+        </div>
+        <span class="additionalInfoCheck" style="display: none"></span>
+        <div class="additionalInfo" style="display: none">
+            <form class="additionalInfoForm" action="/user/additionalInfo" method="post">
+                <span class="additionalInfoTitle">성별과 나이를 입력해주세요!</span><br>
+                <span class="additionalInfoSmall">(해당 정보는 최초 한 번만 입력받습니다.)</span><br>
+                <input type="hidden" id="unoForm" name="uno" value="">
+                <div class="dataDIv">
+                    <input type="radio" id="man" name="gender" value="0">
+                    <label for="man" style="font-size: 25px">남성</label>
+                    <input type="radio" id="woman" name="gender" value="1">
+                    <label for="woman" style="font-size: 25px">여성</label>
+                    <label for="age"></label><br>
+                    <input type="number" min="1" max="99" id="age" name="age" placeholder="나이" ><br>
+                    <button type="button" id="additionalInfoFormButton">저장</button>
+                </div>
+            </form>
+        </div>
+        <div class="inputWrap" style="display: none">
+            <span>여행지를 검색해보세요!</span><br>
+            <input type="text" id="placeInput" onkeyup="fetchSuggestions()" style="font-family: LINESeedKR-Rg">
+            <button id="searchBtn" onclick="fetchSuggestions()"><img src="/dist/image/search.svg"></button>
+            <ul id="suggestions"></ul>
+        </div>
+        <div class="tasteDiv" style="display: none">
+            <div class="preferences">
+                <p class="tasteTitle">당신의 여행 취향을 선택해주세요!</p>
+                <div class="button-grid">
+                    <div class="grid-row">
+                        <button class="taste-button">국립공원</button>
+                        <button class="taste-button">산</button>
+                        <button class="taste-button">자연생태관광지</button>
+                        <button class="taste-button">수목원</button>
+                        <button class="taste-button">폭포</button>
+                        <button class="taste-button">계곡</button>
+                        <button class="taste-button">해안절경</button>
+                        <button class="taste-button">해수욕장</button>
+                    </div>
+                    <div class="grid-row">
+                        <button class="taste-button">섬</button>
+                        <button class="taste-button">동굴</button>
+                        <button class="taste-button">사찰</button>
+                        <button class="taste-button">역사관광지</button>
+                        <button class="taste-button">휴양관광지</button>
+                        <button class="taste-button">체험관광지</button>
+                        <button class="taste-button">동상</button>
+                    </div>
+                    <div class="grid-row">
+                        <button class="taste-button">문화시설</button>
+                        <button class="taste-button">축제</button>
+                        <button class="taste-button">공연/행사</button>
+                        <button class="taste-button">희귀동.식물</button>
+                        <button class="taste-button">민속마을</button>
+                        <button class="taste-button">고궁</button>
+                        <button class="taste-button">관광단지</button>
+                        <button class="taste-button">테마공원</button>
+                    </div>
+                    <div class="grid-row">
+                        <button class="taste-button">전통체험</button>
+                        <button class="taste-button">전시회</button>
+                        <button class="taste-button">이색체험</button>
+                        <button class="taste-button">이색거리</button>
+                        <button class="taste-button">건축/조형물</button>
+                        <button class="taste-button">박물관</button>
+                        <button class="taste-button">문화관광축제</button>
+                    </div>
+                </div>
+                <button class="analyze-button">분석하기</button>
+            </div>
+        </div>
+        <script src="/dist/js/indexPage.js"></script>
+    </body>
+</html>

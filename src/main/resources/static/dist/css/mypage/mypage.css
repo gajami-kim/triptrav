@@ -1,0 +1,382 @@
+.header-nav a{
+    color: black;
+}
+
+.myTripTitle>a{
+    color: black;
+    h3{
+        color: black;
+    }
+}
+
+
+.myPageWrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+    max-width: 1440px;
+    margin: 50px auto;
+    padding: 0 40px;
+    font-family: LINESeedKR-Rg;
+
+}
+.topWrap{
+    width: 1440px;
+    height : 320px;
+}
+
+.bottomWrap{
+    width: 1440px;
+    height: 1000px;
+}
+
+.profile {
+    position: relative;
+    display: flex;
+    text-align: left;
+    padding-top : 50px;
+    margin-top: 50px;
+    padding-left: 20px;
+}
+
+.profileImg {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 1px solid black;
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+.settingProfile{
+    position: absolute;
+    height: 30px;
+    width: 30px;
+    top: 140px;
+    left: 105px;
+}
+
+.userInfoDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 25px;
+}
+
+.userInfoDiv>h2{
+    font-size: 22px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.profileUpdate {
+    margin-top: 15px;
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    background-color: transparent;
+    color: #333;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.myPageList {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.myPageList > li {
+    border-bottom: 2px solid #B3B3B3;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 360px;
+    height: 50px;
+    transition: border-bottom 0.3s, color 0.3s;
+    z-index: 1;
+}
+
+.myPageList > li:hover {
+    border-bottom: 2px solid black;
+}
+
+.myPageList > li:hover > p {
+    color: black;
+}
+
+.myPageList > li > p {
+    pointer-events: none;
+    color: #B3B3B3;
+    text-align: center;
+}
+
+.myPageList > li.active {
+    border-bottom: 2px solid black !important;
+}
+
+.myPageList > li.active > p {
+    color: black !important;
+}
+
+.resultMyPage{
+    width: 1440px;
+    height: 1000px;
+}
+
+.bottomInfoWrap{
+    width: 1440px;
+    height: 700px;
+    margin-top: 20px;
+}
+
+.bottomInfoWrap h1{
+    padding-left: 15px;
+    margin: 10px 0;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.bottomInfoWrap > div:is(.nextMyTrip, .prevMyTrip, .myWishTrip, .myWishPlace, .myPlaceTripReview, .myFoodTripReview) {
+    position: relative;
+    margin-top: 30px;
+}
+
+.tripImgDiv{
+    width: 120px;
+    height: 160px;
+    display: flex;
+    align-items: center;
+}
+
+.tripImg{
+    width: 120px;
+    height: 120px;
+    border: 1px solid #B3B3B3;
+    object-fit: cover;
+}
+
+.tripCard{
+    position: relative;
+    display: flex;
+    height: 160px;
+    flex-direction: row;
+    padding: 15px;
+    border-bottom: 1px solid #B3B3B3;
+}
+
+.tripinfo{
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+}
+
+.tripinfo > ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 500px;
+    height: 130px;
+    padding-left: 15px;
+
+}
+
+.tripinfo > ul > li{
+    margin: 10px 0;
+    font-size: 20px;
+}
+
+/*내 여행 계획*/
+.tripSetting{
+    /*background-color: black;*/
+    position: absolute;
+    right: 40px;
+    top: 35px;
+    z-index: 1;
+    ul a{
+        color: black;
+    }
+}
+
+/*아코디언*/
+:is(.nextTripList, .prevTripList, .tripPlaceReviewList, .tripFoodReviewList,.wishTripDiv){
+    max-height: 500px;
+    overflow: scroll;
+    overflow-x:  hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+:is(.nextTripList, .prevTripList, .tripPlaceReviewList, .tripFoodReviewList ,.wishTripDiv).show {
+    max-height: 890px;
+    display: block;
+}
+
+.accordionBtn {
+    position: absolute;
+    top : -10px;
+    left : 140px;
+    cursor: pointer;
+    padding: 10px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.accordionBtn:hover {
+    background-color: #0056b3;
+}
+
+/*모달창*/
+.updateModal {
+    font-family: LINESeedKR-Rg;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.34);
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    transform: none;
+}
+
+.modal-header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: white;
+    height: 40px;
+    width: 375px;
+    border: 2px solid #B3B3B3;
+    border-radius:10px 10px 0 0;
+    border-bottom: none;
+}
+
+.profileUpdateImg{
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 1px solid black;
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+.modalCloseBtn{
+    width: 14px;
+    height: 28px;
+    color: orange;
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    position: relative;
+    right: -15px;
+}
+
+.updateProfile{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.imgBtn{
+    position: absolute;
+    top: 105px;
+    right: 85px;
+}
+
+.profileUpdateInput{
+    display: none;
+}
+
+.modal-section{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: white;
+    border-radius:0 0 10px 10px;
+    height: 385px;
+    width: 375px;
+    padding-top: 20px;
+    border: 2px solid #B3B3B3;
+    border-top: none;
+
+    form{
+        width: 300px;
+        height: 400px;
+    }
+
+    p input{
+        padding: 10px;
+        width: 90%;
+        margin: 8px 0;
+        border: none;
+        background-color: #d3d3d361;
+        border-radius: 5px;
+        outline: none;
+    }
+
+    p button{
+        width: 98%;
+        margin: 24px 0;
+        height: 35px;
+        border: none;
+        background-color: orange;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+}
+
+/*스크롤바*/
+
+/* 전체 스크롤바 */
+::-webkit-scrollbar {
+    width: 12px; /* 너비 */
+    height: 12px; /* 높이 */
+}
+
+/* .tripPlaceReview와 .tripFoodReview에만 스크롤바 스타일 적용 */
+.tripPlaceReview::-webkit-scrollbar,
+.tripFoodReview::-webkit-scrollbar {
+    width: 12px; /* 너비 */
+    height: 12px; /* 높이 */
+}
+
+/* 스크롤바의 배경 */
+.tripPlaceReview::-webkit-scrollbar-track,
+.tripFoodReview::-webkit-scrollbar-track {
+    background: rgb(219, 219, 219); /* 배경 색 */
+    border-radius: 2px; /* 모서리 둥글게 */
+}
+
+/* 스크롤바의 손잡이 */
+.tripPlaceReview::-webkit-scrollbar-thumb,
+.tripFoodReview::-webkit-scrollbar-thumb {
+    background: #FFD477; /* 손잡이 색 */
+    border-radius: 2px; /* 모서리 둥글게 */
+}
+
+/* 손잡이를 hover했을 때 */
+.tripPlaceReview::-webkit-scrollbar-thumb:hover,
+.tripFoodReview::-webkit-scrollbar-thumb:hover {
+    background: #F3A701; /* hover 색 */
+}
+
+
+
+
+
+
+

@@ -1,0 +1,110 @@
+.myWishPlace,
+.myWishTrip{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cateBtn{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+}
+
+.cateBtn > button {
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+.cateBtn > button:hover {
+    background-color: #e0e0e0;
+}
+
+
+.wishPlaceDiv, .wishFoodList, .wishPlaceList, .wishTripDiv {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 1220px;
+    height: 700px;
+    overflow: scroll;
+
+}
+
+.wishPlaceDiv:has(li),
+.wishFoodList:has(li),
+.wishPlaceList:has(li),
+.wishTripDiv:has(li){
+    li{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 240px;
+        height: 300px;
+    }
+
+}
+
+.wishPlaceDiv:has(.tripCardSection),
+.wishFoodList:has(.tripCardSection),
+.wishPlaceList:has(.tripCardSection),
+.wishTripDiv:has(.tripCardSection){
+    .tripCardSection {
+        width: 220px;
+        height: 280px;
+        position: relative;
+        border: 1px solid #00000094;
+        box-shadow: 3px 3px 7px #00000082;
+        margin-bottom: 20px;
+    }
+    .tripSetting{
+        position: absolute;
+        left: 180px;
+        top: 210px;
+        z-index : 1;
+    }
+    .tripSetting>ul>li{
+        width: 30px;
+        height: 30px;
+    }
+
+    .tripinfo {
+        padding: 0;
+    }
+
+    .tripinfo>ul{
+        width: 180px;
+        height: 50px;
+        padding: 0;
+    }
+
+    .tripinfo>ul>li{
+        width: 180px;
+        height: 70px;
+        padding: 5px;
+    }
+
+    .tripinfo>ul>li>h3>a{
+        color: black;
+    }
+
+    .tripImgDiv{
+        width: 220px;
+        height: 200px;
+    }
+
+    .tripImg{
+        width: 220px;
+        height: 200px;
+        border: none;
+    }
+
+
+}
+

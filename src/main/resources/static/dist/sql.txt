@@ -1,0 +1,207 @@
+CREATE TABLE `user` (
+	`uno` bigint AUTO_INCREMENT PRIMARY KEY,
+	`email` varchar(255) NOT NULL,
+	`pw` varchar(255) NULL,
+	`nickname` varchar(64) NOT NULL,
+	`profile` varchar(500) NULL,
+	`provider` varchar(255) NULL,
+	`provider_id` varchar(255) NULL,
+	`gender` tinyint NULL,
+	`age` int NULL
+);
+
+CREATE TABLE `auth` (
+	`uno` bigint,
+	`role` varchar(20) NOT NULL,
+	FOREIGN KEY (`uno`) REFERENCES `user`(`uno`)
+);
+
+CREATE TABLE `review` (
+	`rno` bigint AUTO_INCREMENT PRIMARY KEY,
+	`uno` bigint NOT NULL,
+	`nickname` varchar(64) NOT NULL,
+	`re_rate` float NULL,
+	`re_content` text NULL,
+	`re_date` datetime NULL DEFAULT NOW(),
+	`re_useful` bigint NULL DEFAULT 0,
+	`re_report` int NULL DEFAULT 0,
+	`re_image_count` int NULL,
+	`re_content_id` bigint NOT NULL,
+	`re_content_type` bigint NOT NULL,
+	`re_content_name` text NOT NULL,
+	FOREIGN KEY (`uno`) REFERENCES `user`(`uno`)
+);
+
+CREATE TABLE `review_image` (
+    `ri_id` bigint AUTO_INCREMENT PRIMARY KEY,
+    `rno` bigint NOT NULL,
+    `image_path` varchar(500) NOT NULL,
+    `upload_date` datetime DEFAULT NOW(),
+    FOREIGN KEY (`rno`) REFERENCES `review`(`rno`) ON DELETE CASCADE
+);
+
+CREATE TABLE `review_like` (
+    `rno` bigint NOT NULL,
+    `uno` bigint NOT NULL,
+    FOREIGN KEY (`rno`) REFERENCES `review`(`rno`) ON DELETE CASCADE,
+    UNIQUE (`rno`, `uno`)
+);
+
+CREATE TABLE `review_report` (
+    `rr_id` bigint AUTO_INCREMENT PRIMARY KEY,
+    `rno` bigint NOT NULL,
+    `uno` bigint NOT NULL,
+    `report_reason` varchar(255) NULL,
+    FOREIGN KEY (`rno`) REFERENCES `review`(`rno`) ON DELETE CASCADE,
+    UNIQUE (`rno`, `uno`)
+);
+
+CREATE TABLE `schedule` (
+	`sco` bigint AUTO_INCREMENT PRIMARY KEY,
+	`sche_name` varchar(64) NOT NULL,
+	`sche_start` datetime NOT NULL,
+	`sche_end` datetime NOT NULL,
+	`sche_count` int NOT NULL,
+	`sche_memo` int NULL DEFAULT 0,
+	`sche_img` varchar(200) NULL,
+	`uno` bigint NOT NULL,
+	FOREIGN KEY (`uno`) REFERENCES `user`(`uno`)
+);
+
+CREATE TABLE `schedule_role` (
+	`sche_role` int NOT NULL DEFAULT 0,
+	`sco` bigint NOT NULL,
+	`uno` bigint NOT NULL,
+	FOREIGN KEY (`sco`) REFERENCES `schedule`(`sco`) ON DELETE CASCADE,
+	FOREIGN KEY (`uno`) REFERENCES `user`(`uno`)
+);
+
+CREATE TABLE `schedule_detail` (
+	`sco` bigint NOT NULL,
+	`sche_content_id` bigint NOT NULL,
+	`sche_title` text NOT NULL,
+	`sche_index` int NOT NULL,
+	`sche_date` int NOT NULL,
+	FOREIGN KEY (`sco`) REFERENCES `schedule`(`sco`) ON DELETE CASCADE
+);
+
+CREATE TABLE `schedule_memo` (
+    `sco` bigint NOT NULL,
+    `sche_memo_writer` varchar(64) NULL,
+    `sche_memo_content` text NULL,
+    FOREIGN KEY (`sco`) REFERENCES `schedule`(`sco`) ON DELETE CASCADE
+);
+
+CREATE TABLE `schedule_companion` (
+    `uno` bigint NOT NULL,
+    `sco` bigint NOT NULL,
+    FOREIGN KEY (`uno`) REFERENCES `user`(`uno`) ON DELETE CASCADE,
+    FOREIGN KEY (`sco`) REFERENCES `schedule`(`sco`) ON DELETE CASCADE,
+    UNIQUE (`uno`)
+);
+
+CREATE TABLE `like` (
+	`uno` bigint NOT NULL,
+	`like_code` bigint NOT NULL,
+	`like_name` text NOT NULL,
+	`type_id` int NOT NULL,
+	FOREIGN KEY (`uno`) REFERENCES `user`(`uno`)
+);
+
+CREATE TABLE `category` (
+    `cno` int AUTO_INCREMENT PRIMARY KEY,
+    `category_code` VARCHAR(255) NOT NULL,
+    `category_name` VARCHAR(255) NOT NULL,
+    UNIQUE (`category_code`, `category_name`)
+);
+
+CREATE TABLE `taste` (
+    `uno` bigint NOT NULL,
+    `cno` int NOT NULL,
+    FOREIGN KEY (`uno`) REFERENCES `user`(`uno`),
+    FOREIGN KEY (`cno`) REFERENCES `category`(`cno`)
+);
+
+
+insert into category(`category_code`, `category_name`) values("A01010100", "국립공원");
+insert into category(`category_code`, `category_name`) values("A01010400", "산");
+insert into category(`category_code`, `category_name`) values("A01010500", "자연생태관광지");
+insert into category(`category_code`, `category_name`) values("A01010700", "수목원");
+insert into category(`category_code`, `category_name`) values("A01010800", "폭포");
+insert into category(`category_code`, `category_name`) values("A01010900", "계곡");
+insert into category(`category_code`, `category_name`) values("A01011100", "해안절경");
+insert into category(`category_code`, `category_name`) values("A01011200", "해수욕장");
+insert into category(`category_code`, `category_name`) values("A01011300", "섬");
+insert into category(`category_code`, `category_name`) values("A01011900", "동굴");
+insert into category(`category_code`, `category_name`) values("A02010800", "사찰");
+insert into category(`category_code`, `category_name`) values("A0201", "역사관광지");
+insert into category(`category_code`, `category_name`) values("A0202", "휴양관광지");
+insert into category(`category_code`, `category_name`) values("A0203", "체험관광지");
+insert into category(`category_code`, `category_name`) values("A02050400", "동상");
+insert into category(`category_code`, `category_name`) values("A0206", "문화시설");
+insert into category(`category_code`, `category_name`) values("A0207", "축제");
+insert into category(`category_code`, `category_name`) values("A0208", "공연/행사");
+insert into category(`category_code`, `category_name`) values("A01020100", "희귀동.식물");
+insert into category(`category_code`, `category_name`) values("A02010600", "민속마을");
+insert into category(`category_code`, `category_name`) values("A02010100", "고궁");
+insert into category(`category_code`, `category_name`) values("A02020200", "관광단지");
+insert into category(`category_code`, `category_name`) values("A02020600", "테마공원");
+insert into category(`category_code`, `category_name`) values("A02030200", "전통체험");
+insert into category(`category_code`, `category_name`) values("A02080500", "전시회");
+insert into category(`category_code`, `category_name`) values("A02030400", "이색체험");
+insert into category(`category_code`, `category_name`) values("A02030600", "이색거리");
+insert into category(`category_code`, `category_name`) values("A0205", "건축/조형물");
+insert into category(`category_code`, `category_name`) values("A02060100", "박물관");
+insert into category(`category_code`, `category_name`) values("A02070100", "문화관광축제");
+
+INSERT INTO `review` (`uno`, `nickname`, `re_rate`, `re_content`, `re_date`, `re_useful`, `re_report`, `re_image_count`, `re_content_id`, `re_content_type`, `re_content_name`) VALUES
+(1, 'user1', 4.5, '정말 멋진 곳이에요! 가족과 함께 즐거운 시간을 보냈습니다.', '2024-10-14 10:23:45', 0, 0, 0, 126508, 12, '경복궁'),
+(2, 'user2', 2.0, '별로였어요. 기대했던 것보다 볼 게 없었어요.', '2024-10-14 11:05:22', 0, 0, 0, 126508, 12, '경복궁'),
+(3, 'user3', 3.0, '괜찮은 경험이었지만 다시 가고 싶지는 않아요.', '2024-10-14 12:34:11', 0, 0, 0, 126508, 12, '경복궁'),
+(4, 'user4', 1.5, '주차장이 너무 협소해서 불편했어요.', '2024-10-14 13:21:33', 0, 0, 0, 126508, 12, '경복궁'),
+(5, 'user5', 5.0, '아이들과 함께 가기 좋은 곳입니다. 추천해요!', '2024-10-14 14:12:58', 0, 0, 0, 126508, 12, '경복궁'),
+(6, 'user6', 4.0, '직원들이 친절하고 시설도 깨끗했어요.', '2024-10-14 15:44:09', 0, 0, 0, 126508, 12, '경복궁'),
+(7, 'user7', 4.5, '사진 찍기 좋은 곳이에요. 인스타 감성이 넘쳐요!', '2024-10-14 16:11:55', 0, 0, 0, 126508, 12, '경복궁'),
+(8, 'user8', 2.5, '가격 대비 만족도가 떨어졌어요. 비싸기만 했습니다.', '2024-10-14 17:35:27', 0, 0, 0, 126508, 12, '경복궁'),
+(9, 'user9', 3.5, '공기가 맑고 경치가 좋아요. 힐링하기 좋네요.', '2024-10-14 18:14:03', 0, 0, 0, 126508, 12, '경복궁'),
+(10, 'user10', 2.0, '사람이 너무 많아서 정신없었어요.', '2024-10-14 19:55:42', 0, 0, 0, 126508, 12, '경복궁'),
+(11, 'user11', 4.5, '이용료가 비싼 편이지만 충분히 가치가 있습니다.', '2024-10-14 20:20:01', 0, 0, 0, 126508, 12, '경복궁'),
+(12, 'user12', 5.0, '기대 이상으로 좋았습니다. 다음에 또 방문할게요.', '2024-10-14 21:10:25', 0, 0, 0, 126508, 12, '경복궁'),
+(13, 'user13', 2.0, '시설이 낡고 관리가 잘 안 된 것 같아요.', '2024-10-14 21:57:12', 0, 0, 0, 126508, 12, '경복궁'),
+(14, 'user14', 4.0, '가족끼리 나들이 가기 딱 좋았어요.', '2024-10-14 22:33:41', 0, 0, 0, 126508, 12, '경복궁'),
+(15, 'user15', 3.5, '친구들과 즐겁게 놀다 왔습니다!', '2024-10-15 09:14:19', 0, 0, 0, 126508, 12, '경복궁'),
+(16, 'user16', 2.0, '청결 상태가 별로였어요. 개선이 필요해요.', '2024-10-15 10:22:39', 0, 0, 0, 126508, 12, '경복궁'),
+(17, 'user17', 4.0, '볼거리가 다양하고 재미있었어요.', '2024-10-15 11:32:57', 0, 0, 0, 126508, 12, '경복궁'),
+(18, 'user18', 2.5, '길 안내 표지판이 부족해서 헤맸습니다.', '2024-10-15 12:48:08', 0, 0, 0, 126508, 12, '경복궁'),
+(19, 'user19', 3.0, '아름다운 풍경 덕분에 스트레스가 풀렸어요.', '2024-10-15 13:12:34', 0, 0, 0, 126508, 12, '경복궁'),
+(20, 'user20', 1.5, '시설 대비 가격이 너무 비싸요.', '2024-10-15 14:20:01', 0, 0, 0, 126508, 12, '경복궁'),
+(21, 'user21', 4.5, '아이들이 너무 좋아했어요! 다시 오고 싶어요.', '2024-10-15 15:33:56', 0, 0, 0, 126508, 12, '경복궁'),
+(22, 'user22', 1.0, '서비스가 별로였어요. 다시 오고 싶지 않네요.', '2024-10-15 16:44:12', 0, 0, 0, 126508, 12, '경복궁'),
+(23, 'user23', 4.0, '도심에서 가까워서 접근성이 좋았습니다.', '2024-10-15 17:56:09', 0, 0, 0, 126508, 12, '경복궁'),
+(24, 'user24', 2.5, '생각보다 규모가 작아서 아쉬웠어요.', '2024-10-15 18:34:27', 0, 0, 0, 126508, 12, '경복궁'),
+(25, 'user25', 1.5, '직원들이 불친절해서 기분이 나빴어요.', '2024-10-15 19:12:45', 0, 0, 0, 126508, 12, '경복궁'),
+(26, 'user26', 3.0, '맑은 날씨 덕분에 더 즐거웠습니다.', '2024-10-15 20:20:19', 0, 0, 0, 126508, 12, '경복궁'),
+(27, 'user27', 4.0, '체험 프로그램이 다양해서 좋았어요.', '2024-10-15 21:01:42', 0, 0, 0, 126508, 12, '경복궁'),
+(28, 'user28', 2.0, '기대 이하였어요. 사진과 달랐습니다.', '2024-10-15 22:18:32', 0, 0, 0, 126508, 12, '경복궁'),
+(29, 'user29', 5.0, '전망대에서 보는 뷰가 정말 좋았어요.', '2024-10-15 23:23:10', 0, 0, 0, 126508, 12, '경복궁'),
+(30, 'user30', 1.5, '식당 음식이 별로였어요. 가격만 비쌌습니다.', '2024-10-16 08:14:56', 0, 0, 0, 126508, 12, '경복궁'),
+(31, 'user31', 4.5, '산책로가 잘 되어 있어서 걷기 좋았습니다.', '2024-10-16 09:22:34', 0, 0, 0, 126508, 12, '경복궁'),
+(32, 'user32', 3.5, '친구들과 좋은 추억을 쌓고 왔습니다.', '2024-10-16 10:30:21', 0, 0, 0, 126508, 12, '경복궁'),
+(33, 'user33', 2.5, '가격 대비 아쉬운 부분이 많았어요.', '2024-10-16 11:40:19', 0, 0, 0, 126508, 12, '경복궁'),
+(34, 'user34', 3.0, '주말에 가서 사람이 많았지만 즐거웠습니다.', '2024-10-16 12:50:08', 0, 0, 0, 126508, 12, '경복궁'),
+(35, 'user35', 1.0, '청소가 잘 안 되어 있었어요. 실망했습니다.', '2024-10-16 13:05:32', 0, 0, 0, 126508, 12, '경복궁'),
+(36, 'user36', 5.0, '역사적인 장소를 직접 보니 감동적이었습니다.', '2024-10-16 14:22:17', 0, 0, 0, 126508, 12, '경복궁'),
+(37, 'user37', 4.0, '친구들끼리 가기 좋은 곳입니다. 많이 걸어야 해요.', '2024-10-16 15:30:09', 0, 0, 0, 126508, 12, '경복궁'),
+(38, 'user38', 3.5, '아이들이 즐길 만한 요소가 많았어요.', '2024-10-16 16:10:43', 0, 0, 0, 126508, 12, '경복궁'),
+(39, 'user39', 2.0, '생각보다 규모가 작아서 금방 둘러봤어요.', '2024-10-16 17:00:29', 0, 0, 0, 126508, 12, '경복궁'),
+(40, 'user40', 4.5, '밤에 가면 조명이 예뻐요!', '2024-10-16 18:14:37', 0, 0, 0, 126508, 12, '경복궁'),
+(41, 'user41', 3.0, '가족 나들이 장소로 적합한 것 같아요.', '2024-10-16 19:30:15', 0, 0, 0, 126508, 12, '경복궁'),
+(42, 'user42', 1.5, '기대에 못 미치는 부분이 많았어요.', '2024-10-16 20:41:22', 0, 0, 0, 126508, 12, '경복궁'),
+(43, 'user43', 4.0, '자연 경관이 너무 아름다워요.', '2024-10-16 21:50:07', 0, 0, 0, 126508, 12, '경복궁'),
+(44, 'user44', 2.5, '대중교통으로 접근하기 어려웠어요.', '2024-10-16 22:12:44', 0, 0, 0, 126508, 12, '경복궁'),
+(45, 'user45', 3.5, '볼거리가 많아서 재미있었어요.', '2024-10-16 23:14:05', 0, 0, 0, 126508, 12, '경복궁'),
+(46, 'user46', 2.0, '날씨가 좋지 않아서 제대로 즐기지 못했어요.', '2024-10-17 09:30:56', 0, 0, 0, 126508, 12, '경복궁'),
+(47, 'user47', 5.0, '아이들과 함께 방문하기 좋은 곳입니다.', '2024-10-17 10:41:23', 0, 0, 0, 126508, 12, '경복궁'),
+(48, 'user48', 4.5, '편의시설이 잘 갖춰져 있어요.', '2024-10-17 11:53:44', 0, 0, 0, 126508, 12, '경복궁'),
+(49, 'user49', 3.0, '무난한 나들이 장소입니다.', '2024-10-17 12:14:19', 0, 0, 0, 126508, 12, '경복궁'),
+(50, 'user50', 1.0, '비용 대비 아쉬웠어요. 재방문 의사는 없습니다.', '2024-10-17 13:25:37', 0, 0, 0, 126508, 12, '경복궁');

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>취향분석</title>
+    <link rel="stylesheet" href="/dist/css/taste/taste.css">
+</head>
+<body>
+<th:block th:replace="~{header :: header}"></th:block>
+<main>
+    <div class="tasteTitleDiv">
+        <span class="tasteTitle"></span>
+    </div>
+    <div class="tasteBtnDiv">
+        <button class="accordion"><span>취향 태그<img src="/dist/image/chevron-down.svg" alt="no-image" class="openButton"></span></button>
+        <button class="reTaste" style="display: none">다시분석</button><br>
+        <div class="selectedTaste"></div>
+    </div>
+    <div class="tasteDiv" style="display: none;">
+        <div class="preferences">
+            <div class="button-grid">
+                <div class="grid-row">
+                    <button class="taste-button" th:classappend="${cnoList.contains(1)} ? 'active'" th:text="'국립공원'" th:data-cno="${1}"></button>
+                    <button class="taste-button" th:classappend="${cnoList.contains(2)} ? 'active'" th:text="'산'" th:data-cno="${2}"></button>
+                    <button class="taste-button" th:classappend="${cnoList.contains(3)} ? 'active'" th:text="'자연생태관광지'" th:data-cno="${3}"></button>
+                    <button class="taste-button" th:classappend="${cnoList.contains(4)} ? 'active'" th:text="'수목원'" th:data-cno="${4}"></button>
+                    <button class="taste-button" th:classappend="${cnoList.contains(5)} ? 'active'" th:text="'폭포'" th:data-cno="${5}"></button>
+                    <button class="taste-button" th:classappend="${cnoList.contains(6)} ? 'active'" th:text="'계곡'" th:data-cno="${6}"></button>
+                    <button class="taste-button" th:classappend="${cnoList.contains(7)} ? 'active'" th:text="'해안절경'" th:data-cno="${7}"></button>
+                    <button class="taste-button" th:classappend="${cnoList.contains(8)} ? 'active'" th:text="'해수욕장'" th:data-cno="${8}"></button>
+                </div>
+                <div class="grid-row">
+                    <button class="taste-button" th:classappend="${cnoList.contains(9)} ? 'active'" th:text="'섬'" th:data-cno="${9}"></button>
+                    <button class="taste-button" th:classappend="${cnoList.contains(10)} ? 'active'" th:text="'동굴'" th:data-cno="${10}"></button>
+                    <button class="taste-button" th:classappend="${cnoList.contains(11)} ? 'active'" th:text="'사찰'" th:data-cno="${11}"></button>
+                    <button class="taste-button" th:classappend="${cnoList.contains(12)} ? 'active'" th:text="'역사관광지'" th:data-cno="${12}"></button>
+                    <button class="taste-button" th:classappend="${cnoList.contains(13)} ? 'active'" th:text="'휴양관광지'" th:data-cno="${13}"></button>
+                    <button class="taste-button" th:classappend="${cnoList.contains(14)} ? 'active'" th:text="'체험관광지'" th:data-cno="${14}"></button>
+                    <button class="taste-button" th:classappend="${cnoList.contains(15)} ? 'active'" th:text="'동상'" th:data-cno="${15}"></button>
+                </div>
+                <div class="grid-row">
+                    <button class="taste-button" th:classappend="${cnoList.contains(16)} ? 'active'" th:text="'문화시설'" th:data-cno="${16}"></button>
+                    <button class="taste-button" th:classappend="${cnoList.contains(17)} ? 'active'" th:text="'축제'" th:data-cno="${17}"></button>
+                    <button class="taste-button" th:classappend="${cnoList.contains(18)} ? 'active'" th:text="'공연/행사'" th:data-cno="${18}"></button>
+                    <button class="taste-button" th:classappend="${cnoList.contains(19)} ? 'active'" th:text="'희귀동.식물'" th:data-cno="${19}"></button>
+                    <button class="taste-button" th:classappend="${cnoList.contains(20)} ? 'active'" th:text="'민속마을'" th:data-cno="${20}"></button>
+                    <button class="taste-button" th:classappend="${cnoList.contains(21)} ? 'active'" th:text="'고궁'" th:data-cno="${21}"></button>
+                    <button class="taste-button" th:classappend="${cnoList.contains(22)} ? 'active'" th:text="'관광단지'" th:data-cno="${22}"></button>
+                    <button class="taste-button" th:classappend="${cnoList.contains(23)} ? 'active'" th:text="'테마공원'" th:data-cno="${23}"></button>
+                </div>
+                <div class="grid-row">
+                    <button class="taste-button" th:classappend="${cnoList.contains(24)} ? 'active'" th:text="'전통체험'" th:data-cno="${24}"></button>
+                    <button class="taste-button" th:classappend="${cnoList.contains(25)} ? 'active'" th:text="'전시회'" th:data-cno="${25}"></button>
+                    <button class="taste-button" th:classappend="${cnoList.contains(26)} ? 'active'" th:text="'이색체험'" th:data-cno="${26}"></button>
+                    <button class="taste-button" th:classappend="${cnoList.contains(27)} ? 'active'" th:text="'이색거리'" th:data-cno="${27}"></button>
+                    <button class="taste-button" th:classappend="${cnoList.contains(28)} ? 'active'" th:text="'건축/조형물'" th:data-cno="${28}"></button>
+                    <button class="taste-button" th:classappend="${cnoList.contains(29)} ? 'active'" th:text="'박물관'" th:data-cno="${29}"></button>
+                    <button class="taste-button" th:classappend="${cnoList.contains(30)} ? 'active'" th:text="'문화관광축제'" th:data-cno="${30}"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="listSection tasteCodeList">태그분석결과 관광지
+        <div class="displayTasteCodeList">
+
+        </div>
+    </section>
+    <section class="listSection tasteUserList">
+        <div class="displayTasteUserList">
+
+        </div>
+    </section>
+    <section class="listSection tasteAIList">AI 추천 관광지<br>
+        <div class="displayTasteAIList">
+
+        </div>
+    </section>
+    <div class="overlay" id="overlay">
+        <div class="spinner" id="spinner">
+            <div class="loading-spinner"></div>
+        </div>
+    </div>
+</main>
+<script th:inline="javascript">
+    const cnoList = /*[[${cnoList}]]*/ [];
+</script>
+<script src="/dist/js/taste/taste.js"></script>
+</body>
+</html>

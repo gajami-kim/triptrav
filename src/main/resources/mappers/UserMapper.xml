@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.www.triptrav.repository.UserMapper">
+    <insert id="joinUser">
+        insert into user (email, nickname, pw) values (#{email}, #{nickname}, #{pw})
+    </insert>
+    <select id="duplicationNick" resultType="int">
+        select count(nickname) from user where nickname=#{nickName}
+    </select>
+    <select id="duplicationEmail" resultType="int">
+        select count(email) from user where email=#{email}
+    </select>
+    <insert id="insertAuth" parameterType="map">
+        insert into auth (uno, role) values (#{uno}, 'ROLE_USER')
+    </insert>
+    <select id="getInsertedUno" resultType="long">
+        select uno from user where email = #{email}
+    </select>
+    <insert id="insertSocialUser">
+        insert into user(email,pw,nickname, profile, provider,provider_id)
+        values (#{email},#{pw},#{nickname},#{profile}, #{provider},#{providerId})
+    </insert>
+    <select id="searchUser" resultType="com.www.triptrav.domain.UserVO">
+        select * from user where provider_id=#{providerId}
+    </select>
+    <select id="checkEmail"  resultType="com.www.triptrav.domain.UserVO">
+        select * from user where email=#{email}
+    </select>
+    <select id="selectAuth" resultType="com.www.triptrav.domain.UserVO">
+        select * from auth as a join user as u on u.uno=a.uno where a.uno=#{unos}
+    </select>
+    <select id="findUserPw" resultType="int">
+        select count(email) from user where email=#{email}
+    </select>
+    <update id="updatePw">
+        update user set pw=#{newPw} where email=#{email}
+    </update>
+    <select id="getPath">
+        select profile from user where uno = #{uno}
+    </select>
+    <select id="getUserNick" resultType="String">
+        select nickname from user where uno=#{uno}
+    </select>
+    <update id="addAdditionalInfo">
+        update user set gender = #{gender}, age = #{age} where uno = #{uno}
+    </update>
+    <select id="checkAdditionalInfo" resultType="boolean" parameterType="long">
+        SELECT CASE
+        WHEN (gender IS NOT NULL AND age IS NOT NULL) THEN TRUE
+        ELSE FALSE
+        END
+        FROM user
+        WHERE uno = #{uno}
+    </select>
+    <select id="getUvo" resultType="com.www.triptrav.domain.UserVO">
+        select * from user where uno = #{uno}
+    </select>
+    <select id="getUserCount" resultType="int">
+        SELECT COUNT(*) FROM user
+    </select>
+    <insert id="insertUser" parameterType="com.www.triptrav.domain.UserVO" useGeneratedKeys="true" keyProperty="uno">
+        INSERT INTO user (email, nickname, age, gender)
+        VALUES (#{email}, #{nickname}, #{age}, #{gender})
+    </insert>
+</mapper>

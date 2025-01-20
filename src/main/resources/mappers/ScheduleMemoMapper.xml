@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.www.triptrav.repository.ScheduleMemoMapper">
+    <insert id="insertMemoContent">
+        insert into schedule_memo
+        values ( #{sco}, #{nick}, #{memo})
+    </insert>
+
+    <select id="getMemo" resultType="com.www.triptrav.domain.ScheduleMemoVO">
+        select * from schedule_memo where sco=#{sco}
+    </select>
+
+    <update id="modifyMemo">
+        update schedule_memo set sche_memo_content=#{memo}
+        where sco=#{sco}
+    </update>
+
+    <delete id="deleteMemo">
+        delete from schedule_memo where sco=#{sco}
+    </delete>
+</mapper>

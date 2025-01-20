@@ -1,0 +1,384 @@
+.mainWrap{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+.mainBackImg img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+}
+.mainBackImg img.active{
+    opacity: 1;
+}
+.mainText{
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    font-size: 2em;
+    font-family: LINESeedKR-Bd;
+    z-index: 10;
+}
+.bold{
+    font-size: 48px;
+}
+.mainBtnDiv{
+    position: absolute;
+    top: 48%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 10;
+}
+.mainBtn{
+    background: white;
+    outline: none;
+    border: 1px solid gainsboro;
+    border-radius: 17px;
+    width: 200px;
+    height: 34px;
+}
+.mainBtn a{
+    font-size: 15px;
+    line-height: 36px;
+    vertical-align: middle;
+    color: black;
+    font-family: LINESeedKR-Rg;
+}
+.mainBtn a img{
+    vertical-align: middle;
+    line-height: 15px;
+    width: 15px;
+    margin-left: 6px;
+    margin-top: -4px;
+}
+.inputWrap {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    font-size: 40px;
+    font-family: LINESeedKR-Bd;
+    z-index: 10;
+}
+
+.inputWrap input {
+    width: 380px;
+    height: 36px;
+    margin-top: 30px;
+    font-size: 16px;
+    border: none;
+    border-radius: 15px;
+    padding-left: 10px;
+    line-height: 36px;
+    outline: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.inputWrap input:focus {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.inputWrap>span {
+    letter-spacing: 2px;
+    font-size: 34px;
+}
+
+.inputWrap>button>img {
+    position: absolute;
+    top: 75px;
+    right: 27px;
+    cursor: pointer;
+    width: 29px;
+    height: 27px;
+    display: inline-block;
+    transition: transform 0.5s ease;
+}
+.inputWrap>button>img:hover {
+    animation: triangleMove 2s linear infinite;
+}
+@keyframes triangleMove {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+    33% {
+        transform: translate(4px, -4px);
+    }
+    66% {
+        transform: translate(4px, 4px);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+#suggestions {
+    width: 392px;
+    margin: 0 auto;
+    padding: 0;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    color: #333;
+    max-height: 200px;
+    overflow: hidden;
+    overflow-y: auto;
+    z-index: 100;
+    position: absolute;
+    top: 108px;
+    text-align: left;
+}
+
+#suggestions>a{
+    color: black;
+    text-decoration: none;
+}
+
+#suggestions li {
+    padding: 10px 10px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    font-size: 15px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    color: black;
+    font-family: LINESeedKR-Rg;
+}
+
+#suggestions>li:first-child{
+    border-top: 1px solid #eee;
+}
+
+#suggestions li a{
+    color: black;
+}
+
+#suggestions li:last-child {
+    border-bottom: none;
+}
+
+#suggestions li:hover {
+    background-color: #f0f0f0;
+    transform: translateX(5px);
+}
+
+#suggestions li:focus {
+    background-color: #e0e0e0;
+    outline: none;
+}
+
+#suggestions::-webkit-scrollbar {
+    width: 8px;
+}
+
+#suggestions::-webkit-scrollbar-thumb {
+    background-color: #F3A701;
+    border-radius: 10px;
+}
+
+#suggestions::-webkit-scrollbar-thumb:hover {
+    background-color: #c28400;
+}
+
+.tasteDiv {
+    font-family: LINESeedKR-Rg;
+    width: 1000px;
+    height: 500px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
+
+.preferences {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.tasteTitle{
+    color: white;
+    font-family: LINESeedKR-Bd;
+    font-size: 32px;
+    margin-bottom: 65px;
+    opacity: 1;
+}
+
+.grid-row {
+    display: grid;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.grid-row:nth-child(1), .grid-row:nth-child(3) {
+    grid-template-columns: repeat(8, 1fr);
+    width: 100%;
+}
+
+.grid-row:nth-child(2), .grid-row:nth-child(4) {
+    grid-template-columns: repeat(7, 1fr);
+    width: 87.5%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.taste-button {
+    padding: 10px;
+    border: 1px solid white;
+    border-radius: 30px;
+    color: white;
+    font-family: LINESeedKR-Rg;
+    font-size: 17px;
+    cursor: pointer;
+    text-align: center;
+    word-break: keep-all;
+    white-space: normal;
+    min-height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease;
+    background-color: rgba(221, 221, 221, 0.4);
+}
+
+.taste-button:hover {
+    background-color: #ffb759;
+}
+
+.analyze-button {
+    width: 165px;
+    height: 40px;
+    margin-top: 10px;
+    line-height: 40px;
+    border: 1px solid white;
+    border-radius: 20px;
+    background-color: white;
+    color: #323232;
+    font-size: 20px;
+    font-family: LINESeedKR-Bd;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.taste-button.active {
+    background-color: #ffb759;
+    color: #ffffff;
+    border: 1px solid #f0f0f0;
+}
+
+.additionalInfo{
+    height: 500px;
+    width: 600px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: black;
+    text-align: center;
+    font-size: 40px;
+    font-family: LINESeedKR-Bd;
+    background-color: #ffffff;
+    border-radius: 30px;
+    box-shadow: 0px 0 10px -2px #000000;
+    padding: 5px;
+}
+.additionalInfoTitle{
+    display: inline-block;
+    margin: 41px 10px -5px 10px;
+}
+.additionalInfoSmall{
+    display: inline-block;
+    font-size: 16px;
+    margin: 6px 0 40px 0;
+}
+
+input[type="radio"] {
+    margin-right: 3px;
+    appearance: none;
+    border: max(2px, 0.1em) solid black;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+}
+[type="radio"]:checked {
+    border: 0.4em solid orange;
+}
+
+input[type="number"] {
+    width: 33%;
+    padding: 10px 8px 8px;
+    border: 1px solid #959595;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+    font-family: 'LINESeedKR-Rg';
+}
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.dataDIv {
+    width: 80%;
+    margin: 0 auto;
+    border: 3px solid gainsboro;
+    padding: 55px 0 0;
+    height: 211px;
+    margin-top: 15px;
+    border-radius: 10px;
+}
+#additionalInfoFormButton {
+    position: relative; /* 가상 요소 위치 조정 */
+    background: orange;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    font-family: 'LINESeedKR-Rg';
+    padding: 8px 69px 4px;
+    border: none; /* 기본적으로 테두리 없음 */
+    transition: 800ms ease all; /* 부드러운 전환 */
+    outline: none;
+}
+
+#additionalInfoFormButton:before,
+#additionalInfoFormButton:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 2px;
+    width: 0;
+    background: orange; /* 초기 배경색 */
+    transition: 400ms ease all; /* 애니메이션 설정 */
+}
+
+#additionalInfoFormButton:after {
+    right: inherit;
+    top: inherit;
+    left: 0;
+    bottom: 0;
+}
+
+#additionalInfoFormButton:hover:before,
+#additionalInfoFormButton:hover:after {
+    width: 100%; /* 가상 요소 애니메이션 */
+    transition: 800ms ease all; /* 애니메이션 지속 시간 */
+}
+
+#additionalInfoFormButton:hover {
+    background: white; /* 호버 시 배경을 흰색으로 변경 */
+    color: orange; /* 텍스트 색 변경 */
+}

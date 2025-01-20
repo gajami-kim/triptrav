@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Maps Main</title>
+    <link rel="stylesheet" th:href="@{/dist/css/maps/mapsMain.css}">
+    <link rel="stylesheet" th:href="@{/dist/css/reset.css}">
+</head>
+<body>
+<th:block th:replace="~{header :: header}"></th:block>
+    <div class="mainWrap">
+        <div class="mainTitle">
+            <span class="title"> 여행지 찾아보기 </span>
+            <span class="selectBox">
+                    <select id="options">
+                        <option value="all" selected>전체</option>
+                        <option value="12">관광지</option>
+                        <option value="15">축제/공연/행사</option>
+                        <option value="25">여행코스</option>
+                        <option value="32">숙박</option>
+                        <option value="28">레포츠</option>
+                        <option value="38">쇼핑</option>
+                        <option value="39">음식점</option>
+                    </select>
+            </span>
+        </div>
+        <div class="mapOutBox">
+            <div class="mapHere">
+                <div id="regionName">위치를 선택하세요</div>
+                <div id="canvas">
+                    <div id="south"></div>
+                </div>
+            </div>
+            <div class="infoHere">
+                <div class="infoBox" id="infoBox">
+                    <p id="infoText">지도를 클릭하여 관광 정보를 얻어보세요!</p>
+                    <ul id="tourInfoList">
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+<script src="/dist/js/key.js"></script>
+<script src="/dist/js/maps/mapDetail.js"></script>
+<script type="text/javascript" src="/dist/js/maps/raphael_min.js"></script>
+<script type="text/javascript" src="/dist/js/maps/raphael_path_s.korea.js"></script>
+<script>
+    var sca = '01';
+</script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/dist/css/schedule/check.css}">
+    <script src="/dist/js/key.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.10/clipboard.min.js"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2405143deeab244b2402da9e3bd9a581&libraries=services,clusterer,drawing"></script>
+</head>
+<body onload="initKakaoMap()">
+    <th:block th:replace="~{header :: header}"></th:block>
+    <input class="inviteUser" th:value="${session.inviteeUser}" style="display: none">
+    <div class="checkBackImg">
+        <div class="blurImg"></div>
+        <div class="checkTitle">
+            <img src="/dist/image/sendW.svg">
+            <p class="checkName"></p>
+            <p class="checkDate"></p>
+            <p class="checkSche"></p>
+        </div>
+        <div class="modalList">
+            <div class="addMemoBtn" th:title="메모" onclick="openModal()"><img src="/dist/image/file-text.svg"><img src="/dist/image/plusW.svg" style="width: 15px" class="plusImg"></div>
+            <div class="checkPersonBtn" th:attr="title='동행자 확인'" onclick="checkPersonF()"><img src="/dist/image/users.svg"></div>
+            <div class="addPersonBtn" th:attr="title='동행자 추가'" onclick="addPersonF()"><img src="/dist/image/user-plus.svg"></div>
+        </div>
+        <div class="memoModal">
+            <div class="memoWrap">
+                <div class="memoTitle">
+                    <span class="titleText">MEMO +</span>
+                    <button class="memoCloseBtn" onclick="closeModal()">&times;</button>
+                </div>
+                <textarea placeholder="메모를 작성하세요..." class="memoContents"></textarea>
+                <button class="saveMemo" onclick="saveMemoF()">저장</button>
+            </div>
+        </div>
+        <div class="personModal">
+            <div class="personModalWrap">
+                <span>동행자 추가</span>
+                <button class="pmCloseBtn">&times;</button>
+                <input class="pmShareValue" readonly>
+                <button class="copyUrl" data-clipboard-target=".pmShareValue">
+                    <img src="/dist/image/paperclip.svg">
+                </button>
+            </div>
+        </div>
+        <div class="companionModal">
+            <div class="companionModalWrap">
+                <span class="compaModal">동행자 확인</span>
+                <button class="cmCloseBtn" onclick="closeCmClose()">&times;</button>
+                <ul class="companionUl"></ul>
+                <button class="editRole hidden" onclick="editRoleUser()">편집</button>
+                <button class="editRoleSave hidden">저장</button>
+            </div>
+        </div>
+        <div class="slideWrap">
+            <div class="innerSlide">
+                <div class="innerLine"></div>
+            </div>
+        </div>
+        <div id="checkMap" style="width: 1600px; height: 800px">
+            <div class="mapOpenBtn">
+                <button><img src="/dist/image/chevrons-right.svg"></button>
+            </div>
+            <div class="mapCloseBtn hidden">
+                <button><img src="/dist/image/chevrons-left.svg"></button>
+            </div>
+            <div class="mapContentBox hidden" onclick="editPlan(event)">
+                <div class="contentTitle">
+                    <span class="nameZone"></span>
+                    <img src="/dist/image/edit-3.svg" class="editPlanTitle hidden" onclick="editTitle()">
+                </div>
+                <div class="dayDisplay">
+                    <div class="day day1 day_focus" data-date="1">Day 1</div>
+                    <div class="day day2" data-date="2"></div>
+                    <div class="day day3" data-date="3"></div>
+                </div>
+                <div class="editBtn btnText hidden">편집</div>
+                <div class="disableEdit hidden"></div>
+                <div class="noPlanText hidden">
+                    <img src="/dist/image/sad-tear.svg">
+                    생성된 일정이 없습니다.<span>하단의 버튼으로 나만의 여행 일정을 만들어보세요!</span>
+                </div>
+                <ul class="contentArea"></ul>
+                <div class="addArea">
+                    <div class="addPlan" onclick="clickAddPlan()">여행지 추가 + </div>
+                </div>
+            </div>
+            <div class="mapContentBox2Depth hidden">
+                <ul class="depth2_ul">
+                    <li class="on" data-number="1" onclick="recommendData()">추천 여행지</li>
+                    <li data-number="2" onclick="baseSearch()">검색</li>
+                    <li data-number="3" onclick="getHeartData()">My 찜</li>
+                </ul>
+                <div class="depth2_recomm hidden"></div>
+                <div class="depth2_search_input_area hidden">
+                    <input class="depth2_input">
+                    <button type="submit" class="depth2_searchBtn"><img src="/dist/image/search.svg"></button>
+                </div>
+                <div class="searchResultDiv"></div>
+                <div class="depth2_heart hidden"></div>
+            </div>
+        </div>
+        <div class="checkBottom"></div>
+    </div>
+    <div class="overlay" id="overlay">
+        <div class="spinner" id="spinner">
+            <div class="loading-spinner"></div>
+        </div>
+    </div>
+    <script src="/dist/js/schedule/check.js"></script>
+    <script src="/dist/js/schedule/inviteUser.js"></script>
+</body>
+</html>

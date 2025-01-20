@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.www.triptrav.repository.ScheduleDetailMapper">
+    <insert id="insertDetailPlan">
+        insert into schedule_detail (sco, sche_content_id, sche_index, sche_date, sche_title)
+        values (#{sco}, #{contentId},#{i}, #{j}, #{placeTitle})
+    </insert>
+
+    <delete id="emptyPlan">
+        delete from schedule_detail where sco=#{sco} and sche_date=#{sche_date}
+    </delete>
+
+    <insert id="updatePlan">
+        insert into schedule_detail (sche_content_id, sche_title, sche_index, sche_date, sco)
+        VALUES (#{scheContentId}, #{scheTitle}, #{scheIndex}, #{scheDate}, #{sco})
+        ON DUPLICATE KEY UPDATE
+            sche_content_id = VALUES(sche_content_id),
+            sche_index = VALUES(sche_index),
+            sche_date = VALUES(sche_date);
+    </insert>
+
+    <select id="getPlanDate" resultType="com.www.triptrav.domain.ScheduleDetailVO">
+        select * from schedule_detail where sco=#{sco} and sche_date=#{date}
+    </select>
+
+    <select id="getAllCourse" resultType="com.www.triptrav.domain.ScheduleDetailVO">
+        select * from schedule_detail where sco=#{sco}
+    </select>
+
+    <select id="getMaxDate" resultType="int">
+        select max(sche_date) from schedule_detail where sco=#{sco}
+    </select>
+
+    <select id="getMaxIndex" resultType="int">
+        select max(sche_index) from schedule_detail
+        where sco=#{sco} and sche_date=#{date}
+    </select>
+
+    <insert id="addPlaceInPlan">
+        insert into schedule_detail
+        values(#{sco},#{scheContentId},#{scheTitle},#{scheIndex}+1,#{scheDate})
+    </insert>
+</mapper>

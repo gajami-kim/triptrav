@@ -1,0 +1,31 @@
+.header-nav {
+    background: #ffffff00;
+    position: absolute;
+    z-index: 100;
+    width: 1440px;
+    top: 30px;
+    left: 52%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: space-between;
+}
+
+.middleUl {
+    font-family: LINESeedKR-Bd;
+    width: 500px;
+    display: flex;
+    justify-content: space-around;
+    font-size: 19px;
+}
+
+.rightUl {
+    font-family: LINESeedKR-Rg;
+    display: flex;
+}
+#header a {
+    color: white;
+}
+
+#header.maps a {
+    color: black !important;
+}

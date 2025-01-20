@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>리뷰 수정</title>
+    <style>
+        /* 팝업창 */
+        .popup {
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7); /* 배경 어둡게 조정 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* 팝업 내용 스타일 */
+        .popup-content {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            width: 90%;
+            height: 70%;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            resize: none;
+            font-size: 14px;
+        }
+
+        #charCount {
+            text-align: right;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .image-upload {
+            margin-top: 15px;
+        }
+
+        .image-preview {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .image-preview img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+
+        button:is(#saveBtn,#closeBtn) {
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        #saveBtn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        input[type="file"] {
+            margin-top: 10px;
+        }
+
+        .star-rating {
+            display: inline-block;
+            position: relative;
+            top: 3px;
+        }
+
+        .stars {
+            display: flex;
+            cursor: pointer;
+        }
+
+        .star {
+            width: 25px;
+            height: 25px;
+            background: url('/dist/image/star-empty.png') no-repeat center;
+            background-size: contain;
+            position: relative;
+        }
+
+        .star.full {
+            background: url('/dist/image/star-full.png') no-repeat center;
+            background-size: contain;
+        }
+
+        .star.half {
+            background: url('/dist/image/star-half.png') no-repeat center;
+            background-size: contain;
+        }
+    </style>
+</head>
+<body>
+<div id="editPopup" class="popup">
+    <div class="popup-content">
+        <h3>리뷰 수정</h3>
+        <form action="/review/POST" method="post" enctype="multipart/form-data">
+            <div class="star-rating">
+                <div class="stars" id="stars">
+                    <span class="star" data-value="1"></span>
+                    <span class="star" data-value="2"></span>
+                    <span class="star" data-value="3"></span>
+                    <span class="star" data-value="4"></span>
+                    <span class="star" data-value="5"></span>
+                </div>
+                <p>별점: <span id="rating-value">0</span></p>
+            </div>
+            <textarea id="reviewText" rows="5" placeholder="리뷰 내용을 수정하세요. (최대 200자)" maxlength="200"></textarea>
+            <div id="charCount">0 / 200</div>
+            <div class="image-upload">
+                <input type="file" id="imageInput" accept="image/*" multiple>
+            </div>
+            <div class="image-preview" id="imagePreview"></div>
+            <button type="button" id="saveBtn" disabled>저장</button>
+        </form>
+        <button type="button" id="closeBtn" onclick="closePopup(e)">닫기</button>
+    </div>
+
+</div>
+<script th:inline="javascript">
+    var review = [[${review.review}]];
+    var imagePath = [[${review.imagePaths}]];
+</script>
+<script>
+    const reviewText = document.getElementById("reviewText");
+    const charCount = document.getElementById("charCount");
+    const imageInput = document.getElementById("imageInput");
+    const imagePreview = document.getElementById("imagePreview");
+    const saveBtn = document.getElementById("saveBtn");
+    var stars = document.getElementById("stars");
+    var validFiles = [];
+    const MAX_FILE_SIZE = 10 * 1024 * 1024;
+
+    initializeReview();
+
+    function initializeReview() {
+        console.log(review);
+        console.log(review.rno);
+        console.log(review.reRate);
+        console.log(review.nickname)
+        console.log(imagePath);
+        document.getElementById("saveBtn").onclick = async function () {
+            modifyReview(review.rno).then(result => {
+                if (result == "success") {
+                    alert("수정 완료");
+                    window.close();
+                    window.opener.location.reload();
+                }
+            });
+        };
+        reviewText.innerText = review.reContent;
+        document.getElementById("rating-value").innerText = review.reRate;
+        highlightStars(stars, review.reRate);
+        starRating();
+        updateCharCount();
+
+        // 초기 이미지 미리보기 생성
+        imagePath.forEach(src => addImagePreview(src.replace("C:\\userImage\\", "/reviewImages/")));
+        // 이벤트 리스너 설정
+        setupEventListeners();
+    }
+
+    // 이미지 미리보기 추가
+    function addImagePreview(src) {
+        const imgDiv = createImageDiv();
+        const image = createImage(`${src}`);
+        const deleteButton = createDeleteButton(imgDiv);
+        imgDiv.appendChild(image);
+        imgDiv.appendChild(deleteButton);
+        imagePreview.appendChild(imgDiv);
+    }
+
+    // 이미지 Div 생성
+    function createImageDiv() {
+        const imgDiv = document.createElement("div");
+        imgDiv.classList.add("imgDiv");
+        imgDiv.style.position = "relative";
+        return imgDiv;
+    }
+
+    // 이미지 엘리먼트 생성
+    function createImage(src) {
+        const image = document.createElement("img");
+        image.classList.add("tripReviewImg");
+        image.src = src;
+        return image;
+    }
+
+    // 이미지 URL을 File 객체로 변환하는 함수
+    async function getFileFromImgSrc(imgSrc) {
+        const response = await fetch(imgSrc);
+        const blob = await response.blob();
+        const fileName = 'image.jpg';
+        const file = new File([blob], fileName, { type: blob.type });
+        return file;
+    }
+
+    // 삭제 버튼 생성
+    function createDeleteButton(imgDiv) {
+        const deleteButton = document.createElement("button");
+        deleteButton.innerText = 'X';
+        deleteButton.style.position = 'absolute';
+        deleteButton.style.top = '2px';
+        deleteButton.style.right = '2px';
+        deleteButton.style.fontSize = '20px';
+        deleteButton.style.color = 'black';
+        deleteButton.style.cursor = 'pointer';
+        deleteButton.onclick = async function () {
+            imgDiv.remove();
+            imageInput.value = '';
+            const imgSrcList = document.querySelectorAll(".tripReviewImg");
+            for (let img of imgSrcList) {
+                const file = await getFileFromImgSrc(img.src);
+                validFiles.push(file);
+            }
+            console.log(validFiles);
+        };
+        return deleteButton;
+    }
+
+
+    function updateCharCount() {
+        charCount.textContent = `${reviewText.value.length} / 200`;
+        validateForm();
+    }
+
+    // 파일 입력 처리
+    function handleFileInput() {
+        const files = imageInput.files;
+        console.log(files);
+        imagePreview.innerText = "";
+        if (files.length > 3) {
+            alert('최대 3장의 이미지만 업로드할 수 있습니다.');
+            imageInput.value = ''; // 선택한 파일 초기화
+            return;
+        }
+        Array.from(files).forEach(file => {
+            // console.log(file);
+            if (file.size > MAX_FILE_SIZE) {
+                alert("파일의 최대 크기는 10MB입니다.");
+                imageInput.value = ''; // 파일 크기 초과 시 초기화
+                return;
+            }
+            validFiles.push(file);
+            // console.log(validFiles);
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                addImagePreview(e.target.result);
+            };
+            reader.readAsDataURL(file);
+        });
+        validateForm();
+    }
+
+    // 저장 버튼 활성화 여부 검사
+    function validateForm() {
+        const currentImageCount = document.querySelectorAll(".imgDiv").length;
+        saveBtn.disabled = !(reviewText.value.length > 0 && currentImageCount <= 3);
+    }
+
+    // 팝업 외부 클릭 시 닫기
+    function closePopup(e) {
+        if (e.target.id === "closeBtn") {
+            // 부모 창이 존재하는지 확인
+            if (window.opener) {
+                window.opener.location.reload();
+            }
+            window.close();
+        }
+    }
+
+
+    // 이벤트 리스너 설정
+    function setupEventListeners() {
+        reviewText.addEventListener('input', updateCharCount);
+        imageInput.addEventListener('change', handleFileInput);
+        imagePreview.addEventListener('click', validateForm);
+        window.addEventListener('click', closePopup);
+    }
+
+    //수정로직
+    async function modifyReview(rno) {
+        var data = new FormData();
+        data.append('reContent', document.getElementById("reviewText").value);
+        data.append('nickname', review.nickname);
+        data.append('reRate', document.getElementById('rating-value').textContent);
+        data.append('reImageCount', validFiles.length);
+        data.append('rno', rno);
+        data.append('reContentType', review.reContentType);
+        data.append('uno', review.uno);
+        data.append('reContentId', review.reContentId);
+        data.append('reContentName', review.reContentName);
+
+        validFiles.forEach(file => {
+            data.append('images', file);
+            console.log(typeof (file));
+        });
+        try {
+            const url = '/review/reviewUpdate/PUT';
+            for (const [key, value] of data.entries()) {
+                console.log(`${key}: ${value}`);
+            }
+            const config = {
+                method: 'PUT',
+                body: data
+            };
+            const resp = await fetch(url, config);
+            const result = await resp.text();
+            return result;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    function starRating() {
+        document.addEventListener('DOMContentLoaded', function () {
+            const stars = document.getElementById('stars');
+            const ratingValue = document.getElementById('rating-value');
+            let currentRating = 0;
+            let isClickSet = false;
+            stars.addEventListener('mousemove', function (e) {
+                const rect = stars.getBoundingClientRect();
+                const offsetX = e.clientX - rect.left;
+                const starWidth = rect.width / 5;
+                const rating = Math.ceil((offsetX / starWidth) * 2) / 2;
+                if (offsetX >= 0 && offsetX <= rect.width) {
+                    highlightStars(stars, rating);
+                    ratingValue.textContent = rating;
+                }
+            });
+            stars.addEventListener('click', function () {
+                currentRating = parseFloat(ratingValue.textContent);
+                highlightStars(stars, currentRating);
+                isClickSet = true;
+            });
+            stars.addEventListener('mouseleave', function () {
+                highlightStars(stars, review.reRate);
+                ratingValue.textContent = review.reRate;
+                if (isClickSet) {
+                    highlightStars(stars, currentRating);
+                    ratingValue.textContent = currentRating;
+                    validateForm();
+                }
+            });
+        });
+    }
+
+    //별점 넣기
+    function highlightStars(stars, rating) {
+        const starElements = stars.children;
+        for (let i = 0; i < starElements.length; i++) {
+            const starValue = i + 1;
+            if (starValue <= rating) {
+                starElements[i].classList.add('full');
+                starElements[i].classList.remove('half');
+            } else if (starValue - 0.5 === rating) {
+                starElements[i].classList.add('half');
+                starElements[i].classList.remove('full');
+            } else {
+                starElements[i].classList.remove('full');
+                starElements[i].classList.remove('half');
+            }
+        }
+    }
+
+    starRating();
+
+</script>
+</body>
+</html>

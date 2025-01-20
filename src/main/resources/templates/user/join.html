@@ -1,0 +1,24 @@
+<section class="mainBox realJoinBox">
+    <p class="pClass"><img class="logoImg"></p>
+    <h2>회원가입</h2>
+    <p class="pClass"<a id="backBtn"> < </a></p>
+    <form action="/user/join" method="POST">
+        <p class="pClass"><input type="text"  id="JoinNick" name="nickname" placeholder="닉네임을 입력하세요."><span></span></p>
+        <span id="JoinSpan1" class="pClass JoinSpan"></span>
+        <p class="pClass"><input type="text" id="JoinEmail" name="email" placeholder="이메일을 입력하세요."><span></span></p>
+        <span id="JoinSpan0" class="pClass JoinSpan"></span>
+        <p class="pClass"><input type="password" id="joinPw" name="pw" placeholder="비밀번호를 입력하세요."><span></span></p>
+        <span id="JoinSpan2" class="pClass JoinSpan"></span>
+        <p class="pClass"><input type="password" id="joinCheckPw" name="pwCheck" placeholder="비밀번호를 한 번 더 입력하세요."><span></span></p>
+        <span id="JoinSpan3" class="pClass JoinSpan"></span>
+        <p class="pClass"><button type="button" class="JoinBtn">회원가입</button></p>
+    </form>
+    <hr class="joinLine" style="border: solid 0.5px lightgrey">
+    <section class="mainBox snsJoinBox">
+        <a href="/oauth2/authorization/kakao"><img src="/dist/image/kakaoLogin.png"></a>
+        <a href="/oauth2/authorization/google"><img src="/dist/image/googleLogin.png"></a>
+        <a href="/oauth2/authorization/naver"><img src="/dist/image/naverLogin.png"></a>
+    </section>
+</section>
+<script src="/dist/js/loginJoin.js"></script>
+

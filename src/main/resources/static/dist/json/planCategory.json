@@ -1,0 +1,302 @@
+[
+  {
+    "categoryCode": "A01010100",
+    "categoryName": "국립공원"
+  },
+  {
+    "categoryCode": "A01010200",
+    "categoryName": "도립공원"
+  },
+  {
+    "categoryCode": "A01010300",
+    "categoryName": "군립공원"
+  },
+  {
+    "categoryCode": "A01010400",
+    "categoryName": "산"
+  },
+  {
+    "categoryCode": "A01010500",
+    "categoryName": "자연생태관광지"
+  },
+  {
+    "categoryCode": "A01010600",
+    "categoryName": "자연휴양림"
+  },
+  {
+    "categoryCode": "A01010700",
+    "categoryName": "수목원"
+  },
+  {
+    "categoryCode": "A01010800",
+    "categoryName": "폭포"
+  },
+  {
+    "categoryCode": "A01010900",
+    "categoryName": "계곡"
+  },
+  {
+    "categoryCode": "A01011000",
+    "categoryName": "약수터"
+  },
+  {
+    "categoryCode": "A01011100",
+    "categoryName": "해안절경"
+  },
+  {
+    "categoryCode": "A01011200",
+    "categoryName": "해수욕장"
+  },
+  {
+    "categoryCode": "A01011300",
+    "categoryName": "섬"
+  },
+  {
+    "categoryCode": "A01011400",
+    "categoryName": "항구/포구"
+  },
+  {
+    "categoryCode": "A01011600",
+    "categoryName": "등대"
+  },
+  {
+    "categoryCode": "A01011700",
+    "categoryName": "호수"
+  },
+  {
+    "categoryCode": "A01011800",
+    "categoryName": "강"
+  },
+  {
+    "categoryCode": "A01011900",
+    "categoryName": "동굴"
+  },
+  {
+    "categoryCode": "A01020100",
+    "categoryName": "희귀동.식물"
+  },
+  {
+    "categoryCode": "A01020200",
+    "categoryName": "기암괴석"
+  },
+  {
+    "categoryCode": "A02010100",
+    "categoryName": "고궁"
+  },
+  {
+    "categoryCode": "A02010200",
+    "categoryName": "성"
+  },
+  {
+    "categoryCode": "A02010300",
+    "categoryName": "문"
+  },
+  {
+    "categoryCode": "A02010400",
+    "categoryName": "고택"
+  },
+  {
+    "categoryCode": "A02010500",
+    "categoryName": "생가"
+  },
+  {
+    "categoryCode": "A02010600",
+    "categoryName": "민속마을"
+  },
+  {
+    "categoryCode": "A02010700",
+    "categoryName": "유적지/사적지"
+  },
+  {
+    "categoryCode": "A02010800",
+    "categoryName": "사찰"
+  },
+  {
+    "categoryCode": "A02010900",
+    "categoryName": "종교성지"
+  },
+  {
+    "categoryCode": "A02011000",
+    "categoryName": "안보관광"
+  },
+  {
+    "categoryCode": "A02020200",
+    "categoryName": "관광단지"
+  },
+  {
+    "categoryCode": "A02020300",
+    "categoryName": "온천/욕장/스파"
+  },
+  {
+    "categoryCode": "A02020400",
+    "categoryName": "이색찜질방"
+  },
+  {
+    "categoryCode": "A02020500",
+    "categoryName": "헬스투어"
+  },
+  {
+    "categoryCode": "A02020600",
+    "categoryName": "테마공원"
+  },
+  {
+    "categoryCode": "A02020700",
+    "categoryName": "공원"
+  },
+  {
+    "categoryCode": "A02020800",
+    "categoryName": "유람선/잠수함관광"
+  },
+  {
+    "categoryCode": "A02030100",
+    "categoryName": "농.산.어촌 체험"
+  },
+  {
+    "categoryCode": "A02030200",
+    "categoryName": "전통체험"
+  },
+  {
+    "categoryCode": "A02030300",
+    "categoryName": "산사체험"
+  },
+  {
+    "categoryCode": "A02030400",
+    "categoryName": "이색체험"
+  },
+  {
+    "categoryCode": "A02030600",
+    "categoryName": "이색거리"
+  },
+  {
+    "categoryCode": "A02040400",
+    "categoryName": "발전소"
+  },
+  {
+    "categoryCode": "A02040600",
+    "categoryName": "식음료"
+  },
+  {
+    "categoryCode": "A02040800",
+    "categoryName": "기타"
+  },
+  {
+    "categoryCode": "A02040900",
+    "categoryName": "전자-반도체"
+  },
+  {
+    "categoryCode": "A02041000",
+    "categoryName": "자동차"
+  },
+  {
+    "categoryCode": "A02050100",
+    "categoryName": "다리/대교"
+  },
+  {
+    "categoryCode": "A02050200",
+    "categoryName": "기념탑/기념비/전망대"
+  },
+  {
+    "categoryCode": "A02050300",
+    "categoryName": "분수"
+  },
+  {
+    "categoryCode": "A02050400",
+    "categoryName": "동상"
+  },
+  {
+    "categoryCode": "A02050500",
+    "categoryName": "터널"
+  },
+  {
+    "categoryCode": "A02050600",
+    "categoryName": "유명건물"
+  },
+  {
+    "categoryCode": "A02060100",
+    "categoryName": "박물관"
+  },
+  {
+    "categoryCode": "A02060200",
+    "categoryName": "기념관"
+  },
+  {
+    "categoryCode": "A02060300",
+    "categoryName": "전시관"
+  },
+  {
+    "categoryCode": "A02060400",
+    "categoryName": "컨벤션센터"
+  },
+  {
+    "categoryCode": "A02060500",
+    "categoryName": "미술관/화랑"
+  },
+  {
+    "categoryCode": "A02060600",
+    "categoryName": "공연장"
+  },
+  {
+    "categoryCode": "A02060700",
+    "categoryName": "문화원"
+  },
+  {
+    "categoryCode": "A02070100",
+    "categoryName": "문화관광축제"
+  },
+  {
+    "categoryCode": "A02070200",
+    "categoryName": "일반축제"
+  },
+  {
+    "categoryCode": "A02080100",
+    "categoryName": "전통공연"
+  },
+  {
+    "categoryCode": "A02080200",
+    "categoryName": "연극"
+  },
+  {
+    "categoryCode": "A02080300",
+    "categoryName": "뮤지컬"
+  },
+  {
+    "categoryCode": "A02080400",
+    "categoryName": "오페라"
+  },
+  {
+    "categoryCode": "A02080500",
+    "categoryName": "전시회"
+  },
+  {
+    "categoryCode": "A02080600",
+    "categoryName": "박람회"
+  },
+  {
+    "categoryCode": "A02080800",
+    "categoryName": "무용"
+  },
+  {
+    "categoryCode": "A02080900",
+    "categoryName": "클래식음악회"
+  },
+  {
+    "categoryCode": "A02081000",
+    "categoryName": "대중콘서트"
+  },
+  {
+    "categoryCode": "A02081100",
+    "categoryName": "영화"
+  },
+  {
+    "categoryCode": "A02081200",
+    "categoryName": "스포츠경기"
+  },
+  {
+    "categoryCode": "A02081300",
+    "categoryName": "기타행사"
+  },
+  {
+    "categoryCode": "A02081400",
+    "categoryName": "넌버벌"
+  }
+]

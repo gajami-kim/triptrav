@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.www.triptrav.repository.ScheduleCompanionMapper">
+    <insert id="inviteUserAddPlan">
+        insert into schedule_companion values (#{uno}, #{sco})
+    </insert>
+
+    <select id="getCompanionList" resultType="com.www.triptrav.domain.ScheduleCompanionDTO">
+        select
+        s.uno, s.sco, u.nickName, u.profile
+        from schedule_companion s
+        join user u
+        on s.uno = u.uno
+        where sco=${sco}
+    </select>
+
+    <delete id="deleteCompanion">
+        delete from schedule_companion where uno=#{uno} and sco=#{sco}
+    </delete>
+</mapper>

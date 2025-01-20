@@ -1,0 +1,152 @@
+[
+  {
+    "cno": 1,
+    "categoryCode": "A01010100",
+    "categoryName": "국립공원"
+  },
+  {
+    "cno": 2,
+    "categoryCode": "A01010400",
+    "categoryName": "산"
+  },
+  {
+    "cno": 3,
+    "categoryCode": "A01010500",
+    "categoryName": "자연생태관광지"
+  },
+  {
+    "cno": 4,
+    "categoryCode": "A01010700",
+    "categoryName": "수목원"
+  },
+  {
+    "cno": 5,
+    "categoryCode": "A01010800",
+    "categoryName": "폭포"
+  },
+  {
+    "cno": 6,
+    "categoryCode": "A01010900",
+    "categoryName": "계곡"
+  },
+  {
+    "cno": 7,
+    "categoryCode": "A01011100",
+    "categoryName": "해안절경"
+  },
+  {
+    "cno": 8,
+    "categoryCode": "A01011200",
+    "categoryName": "해수욕장"
+  },
+  {
+    "cno": 9,
+    "categoryCode": "A01011300",
+    "categoryName": "섬"
+  },
+  {
+    "cno": 10,
+    "categoryCode": "A01011900",
+    "categoryName": "동굴"
+  },
+  {
+    "cno": 11,
+    "categoryCode": "A02010800",
+    "categoryName": "사찰"
+  },
+  {
+    "cno": 12,
+    "categoryCode": "A0201",
+    "categoryName": "역사관광지"
+  },
+  {
+    "cno": 13,
+    "categoryCode": "A0202",
+    "categoryName": "휴양관광지"
+  },
+  {
+    "cno": 14,
+    "categoryCode": "A0203",
+    "categoryName": "체험관광지"
+  },
+  {
+    "cno": 15,
+    "categoryCode": "A02050400",
+    "categoryName": "동상"
+  },
+  {
+    "cno": 16,
+    "categoryCode": "A0206",
+    "categoryName": "문화시설"
+  },
+  {
+    "cno": 17,
+    "categoryCode": "A0207",
+    "categoryName": "축제"
+  },
+  {
+    "cno": 18,
+    "categoryCode": "A0208",
+    "categoryName": "공연/행사"
+  },
+  {
+    "cno": 19,
+    "categoryCode": "A01020100",
+    "categoryName": "희귀동.식물"
+  },
+  {
+    "cno": 20,
+    "categoryCode": "A02010600",
+    "categoryName": "민속마을"
+  },
+  {
+    "cno": 21,
+    "categoryCode": "A02010100",
+    "categoryName": "고궁"
+  },
+  {
+    "cno": 22,
+    "categoryCode": "A02020200",
+    "categoryName": "관광단지"
+  },
+  {
+    "cno": 23,
+    "categoryCode": "A02020600",
+    "categoryName": "테마공원"
+  },
+  {
+    "cno": 24,
+    "categoryCode": "A02030200",
+    "categoryName": "전통체험"
+  },
+  {
+    "cno": 25,
+    "categoryCode": "A02080500",
+    "categoryName": "전시회"
+  },
+  {
+    "cno": 26,
+    "categoryCode": "A02030400",
+    "categoryName": "이색체험"
+  },
+  {
+    "cno": 27,
+    "categoryCode": "A02030600",
+    "categoryName": "이색거리"
+  },
+  {
+    "cno": 28,
+    "categoryCode": "A0205",
+    "categoryName": "건축/조형물"
+  },
+  {
+    "cno": 29,
+    "categoryCode": "A02060100",
+    "categoryName": "박물관"
+  },
+  {
+    "cno": 30,
+    "categoryCode": "A02070100",
+    "categoryName": "문화관광축제"
+  }
+]
