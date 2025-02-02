@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Collections;
 import java.util.List;
@@ -194,7 +195,7 @@ public class ScheduleController {
     }
 
     @GetMapping("/invite")
-    public String inviteUser(@RequestParam String token, HttpSession session) {
+    public String inviteUser(@RequestParam String token, HttpSession session, RedirectAttributes redirectAttributes, Model model) {
         try {
             String decryptedData = InviteService.decrypt(token, secretKey);
             log.info("decryptedData : {}", decryptedData);
@@ -203,11 +204,14 @@ public class ScheduleController {
             String sco = parts[0];
             String uno = parts[1];
 
+            session.setAttribute("inviteSco", sco);
+            session.setAttribute("inviteUno", uno);
             session.setAttribute("inviteeUser", true);
 
             return "redirect:/schedule/invite/check?sco=" + sco;
         } catch (Exception e) {
-            return "잘못된 초대 URL입니다.";
+            redirectAttributes.addFlashAttribute("alertMessage","잘못된 초대 URL입니다.");
+            return "redirect:/";
         }
     }
 

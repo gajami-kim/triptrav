@@ -1,21 +1,32 @@
-const inviteUser = document.querySelector('.inviteUser').value;
-
 document.addEventListener('DOMContentLoaded', () => {
-    if(typeof userNickname == 'undefined'){
-        if (inviteUser){
-            if(confirm("로그인 한 사용자만 이용가능 한 서비스입니다. \n로그인 페이지로 이동하시겠습니까?")){
-                document.getElementById('myModal').style.display = 'flex';
+    const urlParams = new URLSearchParams(window.location.search);
+    const sco = urlParams.get('sco');  // URL에서 'sco' 값 추출
+    const inviteUser = document.querySelector('.inviteUser').value;
 
-            }
-        }
-    }else{
-        getScheduleMaker(sco).then(result =>{
-            if(result != unoNum){
-                addScheduleRole(unoNum, sco).then(result=>{})
+    if (inviteUser) {
+        getScheduleMaker(sco).then(result=> {
+            if(result!=unoNum) {
+                if (confirm("해당 여행에 참여하시겠습니까?")) {
+                    // DB에 초대된 유저를 추가
+                    addScheduleRole(unoNum, sco).then(result => {
+                        if (result) {
+                            alert('초대가 완료되었습니다!');
+                        } else {
+                            alert('초대에 실패했습니다.');
+                            // 실패 시 index 페이지로 리디렉션
+                            window.location.href = "/";
+                        }
+                    });
+                } else {
+                    // 거절하면 index 페이지로 리디렉션
+                    window.location.href = "/";
+                }
             }
         })
     }
-})
+
+});
+
 
 async function getScheduleMaker(sco){
     try{

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <title>main</title>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,6 +23,14 @@
                 <button class="mainBtn">
                     <a onclick="loadTaste()">취향 분석하기<img src="/dist/image/send.svg"></a>
                 </button>
+            </div>
+            <div class="inviteModal">
+                <div class="inviteModal-content">
+                    <p>일정에 초대받으셨습니다.</p>
+                    <p>일정에 참여하시겠습니까?</p>
+                    <button onclick="acceptInvite()">수락</button>
+                    <button onclick="refuseInvite()">거절</button>
+                </div>
             </div>
         </div>
         <span class="additionalInfoCheck" style="display: none"></span>
@@ -95,5 +103,8 @@
             </div>
         </div>
         <script src="/dist/js/indexPage.js"></script>
+        <script th:if="${alertMessage}" th:inline="javascript">
+            alert([[${alertMessage}]]);
+        </script>
     </body>
 </html>

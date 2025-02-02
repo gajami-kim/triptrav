@@ -13,7 +13,7 @@ window.onload = function () {
     changeImage();
 
     const urlParams = new URLSearchParams(window.location.search);
-
+    
     //search page로 이동
     if (urlParams.has('search')) {
         changeSearch();

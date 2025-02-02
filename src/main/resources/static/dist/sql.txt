@@ -96,8 +96,7 @@ CREATE TABLE `schedule_companion` (
     `uno` bigint NOT NULL,
     `sco` bigint NOT NULL,
     FOREIGN KEY (`uno`) REFERENCES `user`(`uno`) ON DELETE CASCADE,
-    FOREIGN KEY (`sco`) REFERENCES `schedule`(`sco`) ON DELETE CASCADE,
-    UNIQUE (`uno`)
+    FOREIGN KEY (`sco`) REFERENCES `schedule`(`sco`) ON DELETE CASCADE
 );
 
 CREATE TABLE `like` (
