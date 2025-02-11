@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/a2c4dcfc-b5e3-4192-875c-2203127ece82)![image](https://github.com/user-attachments/assets/7cfc2498-3965-43fa-b2f2-f6aa84bf8613)# 트립트랩🧳
+# 트립트랩🧳
 여행 일정 생성 및 여행지 추천 서비스
 
 ## 🖥프로젝트 소개
