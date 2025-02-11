@@ -14,20 +14,20 @@ __SpringBoot MVC패턴을 기반으로 작업되었으며__ DB 생성, 유저관
 ## 
 ### 👩🏻‍💻 기여한 부분
 __1. [일정 생성](#일정-생성)__ <br>
-  <br> - [Flatpickr](#flatpickr) <br>
-  <br> - [일정이 있는 경우](#일정있음) <br>
-  <br> - [일정이 없는 경우](#일정없음) <br><br>
+  <br> - [Flatpickr](#f--latpickr) <br>
+  <br> - [일정이 있는 경우](#--일정있음) <br>
+  <br> - [일정이 없는 경우](#--일정없음) <br><br>
 __2. [일정 편집](#일정-편집)__ <br>
-  <br> - [여행지 추천](#여행지-추천) <br>
-  <br> - [검색](#검색) <br>
-  <br> - [편집 제한](#편집-제한) <br><br>
+  <br> - [여행지 추천](#--여행지-추천) <br>
+  <br> - [검색](#--검색) <br>
+  <br> - [편집 제한](#--편집-제한) <br><br>
 __3. [동행자](#동행자)__ <br><br>
 __4. [메모](#메모)__ <br><br>
 __5. [프론트엔드 작업](#화면)__ <br><br>
 
 ##
 ## 일정 생성
-#### Flatpickr
+#### - Flatpickr
 - Flatpickr를 사용하여 여행의 출발일과 종료일을 선택합니다.
 ![플랫피커](https://github.com/user-attachments/assets/afd1d953-0ce5-4489-95ab-8b248c13ff32) <br>
 ![일정생성 캘린더 라이브러리](https://github.com/user-attachments/assets/3a7b5522-f90d-4835-9ae9-86d3090bdc22) <br><br>
@@ -38,12 +38,12 @@ __5. [프론트엔드 작업](#화면)__ <br><br>
 ![일정생성 2박3일 제한](https://github.com/user-attachments/assets/074ab8dc-5870-4c4b-ba54-fb8e7d380f93) <br>
 ![일정생성 도착일제한](https://github.com/user-attachments/assets/ce40f9a6-974a-4a45-aecf-ef4d62498f67) <br><br>
 
-#### 일정이 있는 경우
+#### - 일정이 있는 경우
 - 일정이 있는 경우 여행 기간과 상관없이 첫째 날의 마지막 여행으로 추가됩니다.
 ![여행생성 - 기존](https://github.com/user-attachments/assets/ba3fb1de-e3d9-4981-a543-c8bc2acfcbe8) <br>
 ![이미 있던 일정에 추가](https://github.com/user-attachments/assets/9e2fbcb7-7bf5-49e6-abf3-792f63b57057) <br><br>
 
-#### 일정이 없는 경우
+#### - 일정이 없는 경우
 - 일정이 없는 경우, 일정 없음 페이지를 표시하고 일정을 생성하도록 유도합니다.
 - 제목과 여행일을 DB에 저장하며, 첫째 날의 첫 번째 여행으로 추가됩니다.
 ![여행생성](https://github.com/user-attachments/assets/5282e36f-d76b-41e3-b884-1810461b6f86) <br>
@@ -63,11 +63,11 @@ __5. [프론트엔드 작업](#화면)__ <br><br>
 ![일정 배열 생성](https://github.com/user-attachments/assets/58a37be9-8c17-4175-9176-6df1ccf19750)
 ![일정 DB](https://github.com/user-attachments/assets/2d4eb9a1-5e31-4ea3-9deb-0df76dbc2538)
 
-#### 여행지 추천
+#### - 여행지 추천
 
-#### 검색
+#### - 검색
 
-#### 편집 제한
+#### - 편집 제한
 
 
 #
