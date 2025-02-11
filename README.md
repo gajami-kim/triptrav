@@ -41,7 +41,7 @@ __5. [프론트엔드 작업](#화면)__ <br><br>
 #### - 일정이 있는 경우
 - 일정이 있는 경우 여행 기간과 상관없이 첫째 날의 마지막 여행으로 추가됩니다.
 ![여행생성 - 기존](https://github.com/user-attachments/assets/ba3fb1de-e3d9-4981-a543-c8bc2acfcbe8) <br>
-![이미 있던 일정에 추가](https://github.com/user-attachments/assets/9e2fbcb7-7bf5-49e6-abf3-792f63b57057) <br><br>
+![이미 있던 일정에 추가](https://github.com/user-attachments/assets/37f3fe5b-5b27-406c-b80c-b3ff15c63c18) <br><br>
 
 #### - 일정이 없는 경우
 - 일정이 없는 경우, 일정 없음 페이지를 표시하고 일정을 생성하도록 유도합니다.
