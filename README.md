@@ -35,8 +35,8 @@ __5. [프론트엔드 작업](#화면)__ <br><br>
 - 제한 사항:
   - 종료일은 출발일보다 빠를 수 없습니다.
   - 여행 기간은 최대 2박 3일까지만 설정할 수 있습니다.
-![일정생성 2박3일 제한](https://github.com/user-attachments/assets/074ab8dc-5870-4c4b-ba54-fb8e7d380f93) <br>
-![일정생성 도착일제한](https://github.com/user-attachments/assets/ce40f9a6-974a-4a45-aecf-ef4d62498f67) <br><br>
+![일정생성 2박3일 제한](https://github.com/user-attachments/assets/074ab8dc-5870-4c4b-ba54-fb8e7d380f93) ![일정생성 도착일제한](https://github.com/user-attachments/assets/ce40f9a6-974a-4a45-aecf-ef4d62498f67) <br>
+ <br><br>
 
 #### - 일정이 있는 경우
 - 일정이 있는 경우 여행 기간과 상관없이 첫째 날의 마지막 여행으로 추가됩니다.
