@@ -47,21 +47,21 @@ __5. [프론트엔드 작업](#화면)__ <br><br>
 - 일정이 없는 경우, 일정 없음 페이지를 표시하고 일정을 생성하도록 유도합니다.
 - 제목과 여행일을 DB에 저장하며, 첫째 날의 첫 번째 여행으로 추가됩니다.
 ![여행생성](https://github.com/user-attachments/assets/5282e36f-d76b-41e3-b884-1810461b6f86) <br>
-![일정없음](https://github.com/user-attachments/assets/21fe70d3-a73e-4b0e-b09e-2df8df081d1f) <br><br>
+![일정없음](https://github.com/user-attachments/assets/2154a7e6-53de-4f48-94bc-8384a24d21aa) <br><br>
 
 #
 ## 일정 편집
 - 일정 배열을 저장하는 setPlanData 함수를 사용합니다.
-- 일정 탭에서 저장 버튼을 클릭하면 편집된 정보를 DB에 저장합니다.
+![일정 배열 생성](https://github.com/user-attachments/assets/58a37be9-8c17-4175-9176-6df1ccf19750) <br><br>
+- 일정 탭에서 저장 버튼을 클릭하면 편집된 정보를 DB에 저장합니다. 
   - 여행지 이름
   - API 장소 ID
   - 여행일자(Day)
   - 일정 순서
 - 단, 저장은 선택된 여행일자(Day)만 진행되며, 각 Day(1, 2, 3)는 개별적으로 DB에 저장됩니다.
 - 후에 사용자에게 sche_index번호를 기준으로 여행지 순서를 출력합니다.
-![일정편집1](https://github.com/user-attachments/assets/326a4571-833d-436e-9bd5-7c28e9fd597b)
-![일정 배열 생성](https://github.com/user-attachments/assets/58a37be9-8c17-4175-9176-6df1ccf19750)
-![일정 DB](https://github.com/user-attachments/assets/2d4eb9a1-5e31-4ea3-9deb-0df76dbc2538)
+![일정편집1](https://github.com/user-attachments/assets/326a4571-833d-436e-9bd5-7c28e9fd597b) <br>
+![일정 DB](https://github.com/user-attachments/assets/2d4eb9a1-5e31-4ea3-9deb-0df76dbc2538) <br><br>
 
 #### - 여행지 추천
 
