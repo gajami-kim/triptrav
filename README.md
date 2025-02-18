@@ -91,28 +91,49 @@ __5. [프론트엔드 작업](#프론트엔드-작업)__ <br><br>
 ## 동행자
 #### - 동행자 추가
 - 처음 일정을 생성한 유저는 초대 토큰을 이용해 동행자를 초대할 수 있습니다.
-- 초대받은 유저는 초대 URL로 접속 후 confirm 창에서 초대 수락 여부를 결정할 수 있습니다.
 - 초대를 수락하면 동행자 권한으로 여행에 참여하게 됩니다.
+- 클립보드 라이브러리를 이용하여 초대 토큰을 복사할 수 있도록 하였습니다. 
+![동행자 초대 클립보드](https://github.com/user-attachments/assets/1a6ff87b-c24c-4e10-8ea4-d77cc55caea6) <br>
+![동행자 추가 클립보드](https://github.com/user-attachments/assets/479977b4-b983-4776-9ef7-afe00679a192) <br><br>
+
+- 초대 토큰에 AES 암호화를 적용하여 보안성을 강화하였습니다. 
+![암호화 복호화 다시작성](https://github.com/user-attachments/assets/53b75a38-85be-4570-982f-b8ca9c960688) <br><br>
+
+- 초대받은 유저는 초대 URL로 접속 후 confirm 창에서 초대 수락 여부를 결정할 수 있습니다.
+![여행에 참여하겠냐는 confirm](https://github.com/user-attachments/assets/2086de9a-d921-43fb-bd2d-ce61dd0ec446) <br><br>
+
+- 동행자 추가 시 권한(sche_role), 여행번호(sco), 유저번호(uno)가 함께 저장됩니다.
+![권한 DB](https://github.com/user-attachments/assets/e9ebc1fb-b158-4a13-be5e-2df126b922ad) <br><br>
 
 #### - 동행자 삭제
 - 편집자 권한을 가진 유저는 동행자를 삭제할 수 있습니다.
 - 삭제 전 confirm 창을 통해 정말 삭제할 것인지 확인합니다.
 - 수락하면 해당 유저는 여행에서 삭제됩니다.
-
+![동행자 권한 삭제](https://github.com/user-attachments/assets/a8d83c61-6a45-4aad-95f9-9ab91fecbd30) <br><br>
 
 #### - 동행자 권한 편집
 - 편집자 유저만 동행자 권한을 편집할 수 있습니다.
 - 권한은 편집자, 동행자, 삭제로 결정할 수 있습니다.
 - 편집자는 동행자 권한 편집, 일정 편집, 메모 작성 및 확인이 가능하며, 
   동행자는 메모 작성 및 확인, 동행자 확인만 할 수 있고, 여행 편집이나 동행자 권한 편집은 할 수 없습니다.
+![동행자 권한 업데이트](https://github.com/user-attachments/assets/d0a053e8-d9d4-41a7-9107-6a53ba10130e) <br>
+![동행자 권한 업데이트 함수](https://github.com/user-attachments/assets/8f8c076b-873e-4ed3-a473-879a0e0204a2) <br>
+![동행자 권한 편집](https://github.com/user-attachments/assets/fe44948f-02ff-42b1-8d95-7b6b8d3b0978) <br>
+- 동행자 권한은 편집 버튼이 보이지 않습니다.
+![동행자 있을때](https://github.com/user-attachments/assets/4359f029-9018-4dd6-ae8f-47e2a797c776) <br><br>
 
 #
 ## 메모
 - 메모 작성 및 편집이 가능합니다.
+- 순서대로 메모 저장, 메모 수정 및 삭제 코드입니다.
+![메모 저장](https://github.com/user-attachments/assets/da588f55-9dc3-4b46-8726-263376cd2bef) <br>
+![메모 수정 및 삭제](https://github.com/user-attachments/assets/86037bf2-0535-47c7-9e8c-ea77059e4e91) <br><br>
 
 #
 ## 프론트엔드 작업
 - 상단 이미지는 드래그하여 슬라이드할 수 있도록 구현했습니다.
 - 이미지가 로드된 후, 전체 슬라이드 길이를 계산하여 양 끝에서는 드래그가 불가능하도록 설정했습니다.
+![슬라이드 길이 계산 함수들](https://github.com/user-attachments/assets/34c55550-34fd-4ff7-a5aa-f8a1420b4381) <br>
+![슬라이드 움짤](https://github.com/user-attachments/assets/a6a19222-1286-47f0-9568-75614bf119bc) <br><br>
 
 ### [위로 올라가기](#프로젝트-소개)
