@@ -118,7 +118,8 @@ __5. [프론트엔드 작업](#프론트엔드-작업)__ <br><br>
   동행자는 메모 작성 및 확인, 동행자 확인만 할 수 있고, 여행 편집이나 동행자 권한 편집은 할 수 없습니다.
 ![동행자 권한 업데이트](https://github.com/user-attachments/assets/d0a053e8-d9d4-41a7-9107-6a53ba10130e) <br>
 ![동행자 권한 업데이트 함수](https://github.com/user-attachments/assets/8f8c076b-873e-4ed3-a473-879a0e0204a2) <br>
-![동행자 권한 편집](https://github.com/user-attachments/assets/fe44948f-02ff-42b1-8d95-7b6b8d3b0978) <br>
+![동행자 권한 편집](https://github.com/user-attachments/assets/fe44948f-02ff-42b1-8d95-7b6b8d3b0978) <br><br>
+
 - 동행자 권한은 편집 버튼이 보이지 않습니다.
 ![동행자 있을때](https://github.com/user-attachments/assets/4359f029-9018-4dd6-ae8f-47e2a797c776) <br><br>
 
