@@ -91,12 +91,12 @@ __5. [프론트엔드 작업](#프론트엔드-작업)__ <br><br>
 ## 동행자
 #### - 동행자 추가
 - 처음 일정을 생성한 유저는 초대 토큰을 이용해 동행자를 초대할 수 있습니다.
+- 초대 토큰에 AES 암호화를 적용하여 보안성을 강화하였습니다. 
+![암호화 복호화 다시작성](https://github.com/user-attachments/assets/7aa9e591-01b1-4598-bef7-001827d87ad6) <br><br>
+
 - 클립보드 라이브러리를 이용하여 초대 토큰을 복사할 수 있도록 하였습니다. 
 ![동행자 초대 클립보드](https://github.com/user-attachments/assets/1a6ff87b-c24c-4e10-8ea4-d77cc55caea6) <br>
 ![동행자 추가 클립보드](https://github.com/user-attachments/assets/479977b4-b983-4776-9ef7-afe00679a192) <br><br>
-
-- 초대 토큰에 AES 암호화를 적용하여 보안성을 강화하였습니다. 
-![암호화 복호화 다시작성](https://github.com/user-attachments/assets/7aa9e591-01b1-4598-bef7-001827d87ad6) <br><br>
 
 - 초대받은 유저는 초대 URL로 접속 후 confirm 창에서 초대 수락 여부를 결정할 수 있습니다.
 - 초대를 수락하면 동행자 권한으로 여행에 참여하게 됩니다.
